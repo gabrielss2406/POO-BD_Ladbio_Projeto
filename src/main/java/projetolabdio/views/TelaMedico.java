@@ -4,9 +4,10 @@
  */
 package projetolabdio.views;
 
+import projetolabdio.controllers.Logged;
 import projetolabdio.views.TelaPacienteC;
 import projetolabdio.models.Paciente;
-import javax.swing.DefaultListModel;
+import projetolabdio.controllers.MedicoController;
 import projetolabdio.views.user_auth.TelaLogin;
 
 /**
@@ -20,13 +21,9 @@ public class TelaMedico extends javax.swing.JFrame {
      */
     public TelaMedico() {
         initComponents();
-        
-        // Fazer isso em um controller
-        DefaultListModel m = new DefaultListModel();
-        m.addElement("a");
-        m.addElement("b");
-        m.addElement("c");
-        Pacientes_jList.setModel(m);
+        // Complete jList
+        MedicoController pac = new MedicoController();
+        Pacientes_jList.setModel(pac.getPacientes());
     }
 
     /**
@@ -157,7 +154,8 @@ public class TelaMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_Pac_Create_btnActionPerformed
 
     private void Logout_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout_btn1ActionPerformed
-        // Back to login
+        // Logout and back to login
+        Logged.setCrm(0); // logout
         TelaLogin login = new TelaLogin();
         this.dispose();
         login.setVisible(true);

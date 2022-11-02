@@ -87,14 +87,15 @@ public class PacienteDAO extends ConnectionDAO{
     }
 
     //SELECT
-    public ArrayList<Paciente> selectPaciente() {
+    public ArrayList<Paciente> selectPaciente(int CRM) {
         ArrayList<Paciente> pacientes = new ArrayList<>();
         connectToDB();
-        String sql = "SELECT * FROM Paciente";
+        String sql = "SELECT * FROM Paciente WHERE Medico_crm=?";
 
         try {
-            st = con.createStatement();
-            rs = st.executeQuery(sql);
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, CRM);
+            rs = pst.executeQuery();
 
             while (rs.next()) {
                 Paciente pacienteAux = new Paciente(rs.getInt("idade"),rs.getString("cpf"),rs.getString("nome"), rs.getString("telefone"), rs.getString("endereco"), rs.getInt("Medico_crm"));
@@ -107,7 +108,6 @@ public class PacienteDAO extends ConnectionDAO{
         } finally {
             try {
                 con.close();
-                st.close();
             } catch (SQLException e) {
                 System.out.println("Erro: " + e.getMessage());
             }

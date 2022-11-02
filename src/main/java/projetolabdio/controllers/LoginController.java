@@ -4,7 +4,6 @@
  */
 package projetolabdio.controllers;
 
-import static java.awt.image.ImageObserver.ERROR;
 import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 import projetolabdio.controllers.DAO.MedicoDAO;
@@ -21,13 +20,14 @@ public class LoginController {
         
         // Verify simple test
         if(!"Insira seu CRM".equals(crm) && !"template".equals(pass) && !" ".equals(pass) && !" ".equals(crm)){
+            int crm_int = parseInt(crm);
             // Search in DB
-            Medico medico = m.selectMedicoLogin(parseInt(crm), pass);  
+            Medico medico = m.selectMedicoLogin(crm_int, pass);  
             
             if(medico!=null){ // Login sucess
                 TelaMedico principal = new TelaMedico();
                 principal.setVisible(true);
-                Logged.setCrm(ERROR);
+                Logged.setCrm(crm_int);
                 return true;
             } 
             else { // Login fail
