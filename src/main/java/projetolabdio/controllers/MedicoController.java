@@ -5,7 +5,6 @@
 package projetolabdio.controllers;
 
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
 import projetolabdio.controllers.DAO.PacienteDAO;
 import projetolabdio.models.Paciente;
 
@@ -14,18 +13,24 @@ import projetolabdio.models.Paciente;
  * @author gabri
  */
 public class MedicoController {
-    public DefaultListModel getPacientes(){
+    
+    public ArrayList<Paciente> getPacientesList(){
         PacienteDAO pac = new PacienteDAO();
         ArrayList<Paciente> pacientes = new ArrayList<>();
         
         // Select pacientes
-        pacientes = pac.selectPaciente(Logged.getCrm());
+        pacientes = pac.selectPacientesList(Logged.getCrm());
         
-        // Convert ArrayList -> DefaultListModel
-        DefaultListModel model = new DefaultListModel();
-        for(Paciente p : pacientes)
-            model.addElement(p.getNome());
-        
-        return model;
+        return pacientes;
     }
+    
+    public Paciente getPaciente(String cpf){
+        PacienteDAO pac = new PacienteDAO();
+        
+        // Select pacientes
+        Paciente paciente = pac.selectPaciente(cpf);
+        
+        return paciente;
+    }
+    
 }

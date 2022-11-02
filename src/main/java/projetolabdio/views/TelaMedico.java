@@ -4,6 +4,8 @@
  */
 package projetolabdio.views;
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import projetolabdio.controllers.Logged;
 import projetolabdio.views.TelaPacienteC;
 import projetolabdio.models.Paciente;
@@ -16,14 +18,24 @@ import projetolabdio.views.user_auth.TelaLogin;
  */
 public class TelaMedico extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaMedico
-     */
+    // Atributts
+    private ArrayList<String> cpf = new ArrayList<>(); // CPF List
+    
     public TelaMedico() {
         initComponents();
+        
         // Complete jList
         MedicoController pac = new MedicoController();
-        Pacientes_jList.setModel(pac.getPacientes());
+        DefaultListModel model = new DefaultListModel();
+        ArrayList<Paciente> pacientes = pac.getPacientesList(); // Select pacientes
+        
+        for(Paciente p : pacientes) // Set model jList
+            model.addElement(p.getNome());
+        for(Paciente p : pacientes) // Set CPF list
+               cpf.add(p.getCpf());
+        
+        System.out.println(cpf);
+        Pacientes_jList.setModel(model);
     }
 
     /**
@@ -136,10 +148,12 @@ public class TelaMedico extends javax.swing.JFrame {
         // DoubleClick in elements
         if (evt.getClickCount() == 2) {
             int index = Pacientes_jList.locationToIndex(evt.getPoint());
-            System.out.println(index);
             
-            // Isso aqui tem q ir pro controllers
-            Paciente p = new Paciente(12, "1231231", Pacientes_jList.getSelectedValue(), "232131231", "endereco", 123);
+            // Select paciente using cpf
+            MedicoController pac = new MedicoController();
+            Paciente p = pac.getPaciente(cpf.get(index));
+            
+            // Pass to TelaPacienteRead
             TelaPacienteR read = new TelaPacienteR(p);
             this.dispose();
             read.setVisible(true);

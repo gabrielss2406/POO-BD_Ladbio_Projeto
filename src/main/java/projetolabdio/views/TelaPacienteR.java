@@ -20,6 +20,12 @@ public class TelaPacienteR extends javax.swing.JFrame {
      */
     public TelaPacienteR(Paciente p) {
         initComponents();
+        
+        // Set labels
+        Nome_lbl.setText(p.getNome());
+        Cpf_lbl.setText(p.getCpf());
+        Tel_lbl.setText(p.getTelefone());
+        End_lbl.setText(p.getEndereco());
     }
 
     /**
@@ -37,6 +43,10 @@ public class TelaPacienteR extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        Nome_lbl = new javax.swing.JLabel();
+        Cpf_lbl = new javax.swing.JLabel();
+        Tel_lbl = new javax.swing.JLabel();
+        End_lbl = new javax.swing.JLabel();
         Trat_lbl = new javax.swing.JLabel();
         Dados_lbl = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -70,23 +80,43 @@ public class TelaPacienteR extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Nome_lbl))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Cpf_lbl))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Tel_lbl))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(End_lbl)))
+                .addContainerGap(281, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Nome_lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(Cpf_lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(Tel_lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(End_lbl))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -237,10 +267,14 @@ public class TelaPacienteR extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back_btn;
+    private javax.swing.JLabel Cpf_lbl;
     private javax.swing.JLabel Dados_lbl;
+    private javax.swing.JLabel End_lbl;
+    private javax.swing.JLabel Nome_lbl;
     private javax.swing.JButton Pac_Delete_btn;
     private javax.swing.JButton Pac_Update_btn;
     private javax.swing.JList<String> Pacientes_jList;
+    private javax.swing.JLabel Tel_lbl;
     private javax.swing.JLabel Trat_lbl;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

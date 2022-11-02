@@ -86,8 +86,8 @@ public class PacienteDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    //SELECT
-    public ArrayList<Paciente> selectPaciente(int CRM) {
+    //SELECT FOREIGN KEY
+    public ArrayList<Paciente> selectPacientesList(int CRM) {
         ArrayList<Paciente> pacientes = new ArrayList<>();
         connectToDB();
         String sql = "SELECT * FROM Paciente WHERE Medico_crm=?";
@@ -113,6 +113,34 @@ public class PacienteDAO extends ConnectionDAO{
             }
         }
         return pacientes;
+    }
+    
+    //SELECT SIMPLE
+    public Paciente selectPaciente(String CPF) {
+        connectToDB();
+        String sql = "SELECT * FROM Paciente WHERE cpf=?";
+        Paciente paciente = null;
+
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, CPF);
+            rs = pst.executeQuery();
+
+            if(rs != null && rs.next()){
+                paciente = new Paciente(rs.getInt("idade"),rs.getString("cpf"),rs.getString("nome"), rs.getString("telefone"), rs.getString("endereco"), rs.getInt("Medico_crm"));
+            }
+            sucesso = true;
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        }
+        return paciente;
     }
 }
 
