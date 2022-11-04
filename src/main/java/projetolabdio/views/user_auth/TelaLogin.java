@@ -11,8 +11,10 @@ import java.awt.Color;
 import projetolabdio.controllers.LoginController;
 
 /**
- *
- * @author aluno
+ * Inicial screen, make the login of users
+ * @author Gabriel Siqueira
+ * @since 31/10/22
+ * @version 1.0
  */
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -164,6 +166,10 @@ public class TelaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Placeholder function of Crm_txtField
+     * Remove the placeholder when gain focus
+     */
     private void Crm_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Crm_txtFieldFocusGained
         // Placeholder exit
         String user = Crm_txtField.getText();
@@ -173,6 +179,10 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Crm_txtFieldFocusGained
 
+    /**
+     * Placeholder function of User_passField
+     * Remove the placeholder when gain focus
+     */
     private void User_passFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_User_passFieldFocusGained
         // Placeholder exit
         String pass = new String(User_passField.getPassword());
@@ -182,6 +192,10 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_User_passFieldFocusGained
 
+    /**
+     * Placeholder function of Crm_txtField
+     * Return the placeholder when lost focus
+     */
     private void Crm_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Crm_txtFieldFocusLost
         // Placeholder back
         String user = Crm_txtField.getText();
@@ -191,6 +205,10 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Crm_txtFieldFocusLost
 
+    /**
+     * Placeholder function of User_passField
+     * Returns the placeholder when lost focus
+     */
     private void User_passFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_User_passFieldFocusLost
         // Placeholder back
         String pass = new String(User_passField.getPassword());
@@ -200,6 +218,9 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_User_passFieldFocusLost
 
+    /**
+     * Login action, calls the LoginController
+     */
     private void Login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_btnActionPerformed
         // Login
         String crm = Crm_txtField.getText();
@@ -214,6 +235,9 @@ public class TelaLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Login_btnActionPerformed
 
+    /**
+     * Calls the screen that is responsible for make the registration
+     */
     private void Cadastro_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Cadastro_lblMouseClicked
         // Register new user
         TelaRegistroMedico registro = new TelaRegistroMedico();
@@ -221,6 +245,9 @@ public class TelaLogin extends javax.swing.JFrame {
         registro.setVisible(true);
     }//GEN-LAST:event_Cadastro_lblMouseClicked
 
+    /**
+     * Make Crm_txtField accept only digits
+     */
     private void Crm_txtFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Crm_txtFieldKeyTyped
         // Accept only numbers
         String caracteres="0987654321";

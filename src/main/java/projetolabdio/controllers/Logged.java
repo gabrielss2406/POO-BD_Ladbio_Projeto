@@ -5,13 +5,17 @@
 package projetolabdio.controllers;
 
 /**
- *
- * @author gabri
+ * Class with the static attribute for verify logged user
  * It is a Session Class for login
+ * @author Gabriel Siqueira
+ * @since 02/11/2022
+ * @version 1.0
  */
 public class Logged {
+    // Attribute
     private static int crm = 0;
 
+    // Getters and Setters
     public static int getCrm() {
         return crm;
     }

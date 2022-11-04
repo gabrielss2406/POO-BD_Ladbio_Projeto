@@ -11,10 +11,18 @@ import projetolabdio.models.Medico;
 import projetolabdio.views.TelaMedico;
 
 /**
- *
- * @author aluno
+ * Controller for login actions in TelaLogin
+ * @author Gabriel Siqueira
+ * @since 02/11/2022
+ * @version 1.1 (with Logged system)
  */
 public class LoginController {
+    /**
+     * Consults the database (DAO Controllers) and make the auth process
+     * @param crm Primary key of Medico table
+     * @param pass Password of the user
+     * @return TRUE for successful login and FALSE for unsuccessful login
+     */
     public boolean Login(String crm, String pass){
         MedicoDAO m = new MedicoDAO();
         

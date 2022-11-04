@@ -13,14 +13,20 @@ import projetolabdio.controllers.MedicoController;
 import projetolabdio.views.user_auth.TelaLogin;
 
 /**
- *
- * @author aluno
+ * Main screen of user, list all related users
+ * @author Gabriel Siqueira
+ * @since 01/11/22
+ * @version 1.0
  */
 public class TelaMedico extends javax.swing.JFrame {
 
-    // Atributts
+    // Attributes
     private ArrayList<String> cpf = new ArrayList<>(); // CPF List
-    
+
+    /**
+     * Creates new form TelaMedico
+     * Call the MedicoController and list all related users (Pacientes)
+     */
     public TelaMedico() {
         initComponents();
         
@@ -33,8 +39,8 @@ public class TelaMedico extends javax.swing.JFrame {
             model.addElement(p.getNome());
         for(Paciente p : pacientes) // Set CPF list
                cpf.add(p.getCpf());
-        
-        System.out.println(cpf);
+
+        // Set jList
         Pacientes_jList.setModel(model);
     }
 
@@ -144,6 +150,10 @@ public class TelaMedico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Capture double clicks on Pacientes_jList
+     * Call the MedicoController and redirect to the individual Paciente screen
+     */
     private void Pacientes_jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Pacientes_jListMouseClicked
         // DoubleClick in elements
         if (evt.getClickCount() == 2) {
@@ -160,6 +170,9 @@ public class TelaMedico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Pacientes_jListMouseClicked
 
+    /**
+     * Redirect to the form for create new Paciente
+     */
     private void Pac_Create_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pac_Create_btnActionPerformed
         // Create paciente
         TelaPacienteC pac_create = new TelaPacienteC();
@@ -167,6 +180,9 @@ public class TelaMedico extends javax.swing.JFrame {
         pac_create.setVisible(true);
     }//GEN-LAST:event_Pac_Create_btnActionPerformed
 
+    /**
+     * Logout and back to login screen
+     */
     private void Logout_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Logout_btn1ActionPerformed
         // Logout and back to login
         Logged.setCrm(0); // logout

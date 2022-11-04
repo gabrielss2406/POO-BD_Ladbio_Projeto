@@ -1,25 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-
 package projetolabdio;
 import projetolabdio.controllers.Logged;
 import projetolabdio.views.user_auth.TelaLogin;
 
 /**
- *
- * @author aluno
+ * Main class, starts the program and make instances class attributes
+ * @author Gabriel Siqueira
+ * @since 31/10/22
+ * @version 1.1 (with Logged system)
  */
 public class Main {
 
     /**
-     * @param args the command line arguments
+     * Initial and main method of the entire application
      */
     public static void main(String[] args) {
-        
+        // Starts TelaLogin, the initial screen
         TelaLogin inicial = new TelaLogin();
         inicial.setVisible(true);
+
+        // Instances the static attribute for verifying user logged
         Logged logged = new Logged();
     }
     

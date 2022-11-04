@@ -9,14 +9,16 @@ import projetolabdio.views.TelaMedico;
 import projetolabdio.models.Paciente;
 
 /**
- *
- * @author aluno
+ * The individual screen of Paciente
+ * @author Gabriel Siqueira
+ * @since 01/11/2022
+ * @version 1.0 (whitout delete and update system)
  */
 public class TelaPacienteR extends javax.swing.JFrame {
 
     /**
-     * Creates new form TelaPacienteView
-     * @param p
+     * Creates new form TelaPaciente
+     * And set labels with the Paciente obj data
      */
     public TelaPacienteR(Paciente p) {
         initComponents();
@@ -221,8 +223,11 @@ public class TelaPacienteR extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Pacientes_jListMouseClicked
 
+    /**
+     * Back to the main screen of user, TelaMedico
+     */
     private void Back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_btnActionPerformed
-        // Back to login
+        // Back to TelaMedico
         TelaMedico medico = new TelaMedico();
         this.dispose();
         medico.setVisible(true);
