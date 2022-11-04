@@ -3,13 +3,22 @@ package projetolabdio.controllers.DAO;
 import projetolabdio.models.Paciente;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ * Class for CREATE, READ, UPDATE, DELETE objects of the table "Paciente"
+ * @author Francisco Pereira Guimaraes
+ * @since 02/11/2022
+ * @version 1.0
+ */
 public class PacienteDAO extends ConnectionDAO{
     //DAO - Data Access Object
     boolean sucesso = false; //Para saber se funcionou
 
-    //INSERT
-    public boolean insertPaciente(Paciente paciente) {
+    /**
+     * Function for CREATE a new object in the table "Medico"
+     * @param paciente Object of Paciente that will be created
+     * @return boolean variable (1 - success) (2 - fail)
+     */
+    public boolean insertPaciente(Paciente paciente) { //CREATE
 
         connectToDB();
 
@@ -38,56 +47,12 @@ public class PacienteDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    //UPDATE
-    public boolean updatePaciente(int id, String atributo1, String atributo2) {
-        connectToDB();
-        String sql = "UPDATE Paciente SET ?=? where id=?";
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setString(1, atributo1);
-            pst.setString(2, atributo2);
-            pst.setInt(3,id);
-            pst.execute();
-            sucesso = true;
-        } catch (SQLException ex) {
-            System.out.println("Erro = " + ex.getMessage());
-            sucesso = false;
-        } finally {
-            try {
-                con.close();
-                pst.close();
-            } catch (SQLException exc) {
-                System.out.println("Erro: " + exc.getMessage());
-            }
-        }
-        return sucesso;
-    }
-
-    //DELETE
-    public boolean deletePaciente(int id) {
-        connectToDB();
-        String sql = "DELETE FROM Paciente where id=?";
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setInt(1, id);
-            pst.execute();
-            sucesso = true;
-        } catch (SQLException ex) {
-            System.out.println("Erro = " + ex.getMessage());
-            sucesso = false;
-        } finally {
-            try {
-                con.close();
-                pst.close();
-            } catch (SQLException exc) {
-                System.out.println("Erro: " + exc.getMessage());
-            }
-        }
-        return sucesso;
-    }
-
-    //SELECT FOREIGN KEY
-    public ArrayList<Paciente> selectPacientesList(int CRM) {
+    /**
+     * Function to search for all Paciente belonging to this Medico
+     * @param CRM Primary key of "Medico" table
+     * @return a list with all Pacientes found
+     */
+    public ArrayList<Paciente> selectPacientesList(int CRM) { //READ ALL PACIENTES
         ArrayList<Paciente> pacientes = new ArrayList<>();
         connectToDB();
         String sql = "SELECT * FROM Paciente WHERE Medico_crm=?";
@@ -114,9 +79,13 @@ public class PacienteDAO extends ConnectionDAO{
         }
         return pacientes;
     }
-    
-    //SELECT SIMPLE
-    public Paciente selectPaciente(String CPF) {
+
+    /**
+     * Function to search all attributes for Paciente that have this CPF
+     * @param CPF Primary key of "Paciente" table
+     * @return a list with all the information of the Paciente found
+     */
+    public Paciente selectPaciente(String CPF) { //SELECT INFORMATIONS OF THIS CPF
         connectToDB();
         String sql = "SELECT * FROM Paciente WHERE cpf=?";
         Paciente paciente = null;
@@ -142,5 +111,65 @@ public class PacienteDAO extends ConnectionDAO{
         }
         return paciente;
     }
+
+    /**
+     * Function for update attributes of the Paciente that have this CPF
+     * @param CPF Primary key of "Paciente" table
+     * @param atributo1 Attribute that will be updated
+     * @param atributo2 New attribute
+     * @return boolean variable (1 - success) (2 - fail)
+     */
+    public boolean updatePaciente(int CPF, String atributo1, String atributo2) { //UPDATE
+        connectToDB();
+        String sql = "UPDATE Paciente SET ?=? where id=?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, atributo1);
+            pst.setString(2, atributo2);
+            pst.setInt(3,CPF);
+            pst.execute();
+            sucesso = true;
+        } catch (SQLException ex) {
+            System.out.println("Erro = " + ex.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+        return sucesso;
+    }
+
+    /**
+     * Funtion for DELETE the Paciente that have this CPF
+     * @param CPF Primary key of "Paciente" table
+     * @return boolean variable (1 - success) (2 - fail)
+     */
+    public boolean deletePaciente(int CPF) { //DELETE
+        connectToDB();
+        String sql = "DELETE FROM Paciente where id=?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, CPF);
+            pst.execute();
+            sucesso = true;
+        } catch (SQLException ex) {
+            System.out.println("Erro = " + ex.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+        return sucesso;
+    }
+
+
 }
 

@@ -1,15 +1,23 @@
 package projetolabdio.controllers.DAO;
 
-
 import projetolabdio.models.Medico;
 import java.sql.SQLException;
-
+/**
+ * Class for CREATE, READ objects of the table "Medico"
+ * @author Francisco Pereira Guimaraes
+ * @since 02/11/2022
+ * @version 1.0
+ */
 public class MedicoDAO extends ConnectionDAO{
     //DAO - Data Access Object
     boolean sucesso = false; //Para saber se funcionou
 
-    //INSERT
-    public boolean insertMedico(Medico medico) {
+    /**
+     * Function for CREATE a new object in the table "Medico"
+     * @param medico Object of Medico that will be created
+     * @return boolean variable (1 - success) (2 - fail)
+     */
+    public boolean insertMedico(Medico medico) { //CREATE
 
         connectToDB();
 
@@ -37,8 +45,13 @@ public class MedicoDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    //SELECT
-    public Medico selectMedicoLogin(int CRM, String SENHA) {
+    /**
+     * Function for verify if exists an object in the "Medico" table that has these attributes
+     * @param CRM Primary key of "Medico" table
+     * @param SENHA Password of "Medico" table
+     * @return an object for the "Medico" table
+     */
+    public Medico selectMedicoLogin(int CRM, String SENHA) { //Read
         connectToDB();
         String sql = "SELECT * FROM `Medico` WHERE `crm`=? AND `senha`=?";
         Medico medico = null;

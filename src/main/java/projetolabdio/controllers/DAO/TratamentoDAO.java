@@ -3,13 +3,22 @@ package projetolabdio.controllers.DAO;
 import projetolabdio.models.Tratamento;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ * Class for CREATE, READ objects of the table "Medico"
+ * @author Francisco Pereira Guimaraes
+ * @since 02/11/2022
+ * @version 1.0
+ */
 public class TratamentoDAO extends ConnectionDAO{
     //DAO - Data Access Object
     boolean sucesso = false; //Para saber se funcionou
 
-    //INSERT
-    public boolean insertTratamento(Tratamento tratamento) {
+    /**
+     * Function for CREATE a new object in the table "Medico"
+     * @param tratamento Object of Medico that will be created
+     * @return boolean variable (1 - success) (2 - fail)
+     */
+    public boolean insertTratamento(Tratamento tratamento) { //CREATE
 
         connectToDB();
 
@@ -37,8 +46,12 @@ public class TratamentoDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    //SELECT
-    public ArrayList<Tratamento> selectTratamento(String cpf) {
+    /**
+     * Function to search for all Tratamentos of the Paciente with this CPF
+     * @param cpf Primary key of "Paciente" table
+     * @return a list with all Tratamentos found
+     */
+    public ArrayList<Tratamento> selectTratamento(String cpf) { //READ
         ArrayList<Tratamento> tratamentos = new ArrayList<>();
         connectToDB();
         String sql = "SELECT * FROM tratamentos WHERE Paciente_cpf = ?";

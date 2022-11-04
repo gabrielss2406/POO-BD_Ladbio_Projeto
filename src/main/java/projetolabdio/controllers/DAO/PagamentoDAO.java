@@ -1,16 +1,24 @@
 package projetolabdio.controllers.DAO;
 
-
 import projetolabdio.models.Pagamento;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ * Class for CREATE, READ, UPDATE objects of the table "Pagamento"
+ * @author Francisco Pereira Guimaraes
+ * @since 02/11/2022
+ * @version 1.0
+ */
 public class PagamentoDAO extends ConnectionDAO{
     //DAO - Data Access Object
     boolean sucesso = false; //Para saber se funcionou
 
-    //INSERT
-    public boolean insertPagamento(Pagamento pagamento) {
+    /**
+     * Function for CREATE a new object in the table "Medico"
+     * @param pagamento Object of Medico that will be created
+     * @return boolean variable (1 - success) (2 - fail)
+     */
+    public boolean insertPagamento(Pagamento pagamento) { //CREATE
 
         connectToDB();
 
@@ -39,8 +47,44 @@ public class PagamentoDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    //UPDATE
-    public boolean updatePagamento(int id) {
+    /**
+     * Function to search the Pagamento with this ID for Tratamento
+     * @param ID Primary key of "Tratamento" table
+     * @return the Pagamento found
+     */
+    public Pagamento selectPagamento(int ID) { //READ
+        Pagamento pagamento = null;
+        connectToDB();
+        String sql = "SELECT * FROM Pagamento WHERE Tratamento_idTratamento = ?";
+
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1,ID);
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                pagamento = new Pagamento(rs.getInt("id"), rs.getInt("parcelas"),rs.getString("forma"),rs.getDate("data"), rs.getBoolean("pago"), rs.getInt("Tratamento_idTratamento"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+        } finally {
+            try {
+                con.close();
+                st.close();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        }
+        return pagamento;
+    }
+
+    /**
+     * Function for update the attribute "Pago" of Pagamento that have this ID
+     * @param id Primary key of Pagamento
+     * @return boolean variable (1 - success) (2 - fail)
+     */
+    public boolean updatePagamento(int id) { //UPDATE
         connectToDB();
         String sql = "UPDATE Pagamento SET pago=1 where id=?";
         try {
@@ -60,36 +104,5 @@ public class PagamentoDAO extends ConnectionDAO{
             }
         }
         return sucesso;
-    }
-
-    //SELECT
-    public ArrayList<Pagamento> selectPagamento(int ID) {
-        ArrayList<Pagamento> pagamentos = new ArrayList<>();
-        connectToDB();
-        String sql = "SELECT * FROM Pagamento WHERE Tratamento_idTratamento = ?";
-
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setInt(1,ID);
-            st = con.createStatement();
-            rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-                Pagamento pagamentoAux = new Pagamento(rs.getInt("id"), rs.getInt("parcelas"),rs.getString("forma"),rs.getDate("data"), rs.getBoolean("pago"), rs.getInt("Tratamento_idTratamento"));
-                pagamentos.add(pagamentoAux);
-            }
-            sucesso = true;
-        } catch (SQLException e) {
-            System.out.println("Erro: " + e.getMessage());
-            sucesso = false;
-        } finally {
-            try {
-                con.close();
-                st.close();
-            } catch (SQLException e) {
-                System.out.println("Erro: " + e.getMessage());
-            }
-        }
-        return pagamentos;
     }
 }

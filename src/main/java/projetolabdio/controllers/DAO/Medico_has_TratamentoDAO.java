@@ -1,15 +1,24 @@
 package projetolabdio.controllers.DAO;
 
-
 import projetolabdio.models.Medico_has_Tratamento;
 import java.sql.SQLException;
 
-public class Medico_has_TratamentoDAO extends ConnectionDAO{
-    //DAO - Data Access Object
-    boolean sucesso = false; //Para saber se funcionou
+/**
+ * Class for CREATE objects of the table "Medico_has_Tratamento"
+ * @author Francisco Pereira Guimaraes
+ * @since 02/11/2022
+ * @version 1.0
+ */
+public class Medico_has_TratamentoDAO extends ConnectionDAO{ //DAO - Data Access Object
 
-    //INSERT
-    public boolean insertMedico_has_Tratamento(Medico_has_Tratamento mht) {
+    boolean sucesso = false; //Variable to check if it worked
+
+    /**
+     * Function for CREATE a new object in the table "Medico_has_Tratamento"
+     * @param mht Object of Medico_has_Tratamento that will be created
+     * @return boolean variable (1 - success) (2 - fail)
+     */
+    public boolean insertMedico_has_Tratamento(Medico_has_Tratamento mht) { //CREATE
 
         connectToDB();
 
