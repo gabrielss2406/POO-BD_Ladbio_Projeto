@@ -5,8 +5,16 @@
 package projetolabdio.views;
 
 
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import projetolabdio.controllers.PacienteController;
+import projetolabdio.controllers.PagamentoController;
+import projetolabdio.controllers.TratamentoController;
 import projetolabdio.views.TelaMedico;
 import projetolabdio.models.Paciente;
+import projetolabdio.models.Pagamento;
+import projetolabdio.models.Tratamento;
 
 /**
  * The individual screen of Paciente
@@ -15,10 +23,14 @@ import projetolabdio.models.Paciente;
  * @version 1.0 (whitout delete and update system)
  */
 public class TelaPacienteR extends javax.swing.JFrame {
+    
+    // Attributes
+    private ArrayList<Integer> id = new ArrayList<>(); // Id List
 
     /**
      * Creates new form TelaPaciente
      * And set labels with the Paciente obj data
+     * And set jList for Tratamento for this Paciente
      */
     public TelaPacienteR(Paciente p) {
         initComponents();
@@ -28,6 +40,26 @@ public class TelaPacienteR extends javax.swing.JFrame {
         Cpf_lbl.setText(p.getCpf());
         Tel_lbl.setText(p.getTelefone());
         End_lbl.setText(p.getEndereco());
+        
+        // Search and set Tratamento and Pagamento jList
+        PacienteController pac = new PacienteController();
+        DefaultListModel model = new DefaultListModel();
+        ArrayList<Tratamento> tratamentos = pac.selectTratamento(p.getCpf()); // Select tratamentos
+        ArrayList<Pagamento> pagamentos = pac.selectTratamentoPagamento(tratamentos); // Select pagamentos
+        
+        // Set model
+        for(int i=0; i<tratamentos.size(); i++) // Set model jList
+            if(pagamentos.get(i).getPago())
+                model.addElement(tratamentos.get(i).getData()+" - Pagamento OK");
+            else
+                model.addElement(tratamentos.get(i).getData()+" - Pagamento Pendente");
+        
+        for(Tratamento t : tratamentos) // Set CPF list
+               id.add(t.getId());
+
+        
+        // Set jList
+        Trat_jList.setModel(model);
     }
 
     /**
@@ -52,7 +84,7 @@ public class TelaPacienteR extends javax.swing.JFrame {
         Trat_lbl = new javax.swing.JLabel();
         Dados_lbl = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Pacientes_jList = new javax.swing.JList<>();
+        Trat_jList = new javax.swing.JList<>();
         Pac_Delete_btn = new javax.swing.JButton();
         Pac_Update_btn = new javax.swing.JButton();
         Back_btn = new javax.swing.JButton();
@@ -124,22 +156,27 @@ public class TelaPacienteR extends javax.swing.JFrame {
 
         Trat_lbl.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         Trat_lbl.setForeground(new java.awt.Color(255, 255, 255));
-        Trat_lbl.setText("Tratamentos:");
+        Trat_lbl.setText("Tratamentos: (Clique para ver detalhes)");
 
         Dados_lbl.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         Dados_lbl.setForeground(new java.awt.Color(255, 255, 255));
         Dados_lbl.setText("Dados Paciente:");
 
-        Pacientes_jList.addMouseListener(new java.awt.event.MouseAdapter() {
+        Trat_jList.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Pacientes_jListMouseClicked(evt);
+                Trat_jListMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(Pacientes_jList);
+        jScrollPane1.setViewportView(Trat_jList);
 
         Pac_Delete_btn.setBackground(new java.awt.Color(255, 102, 102));
         Pac_Delete_btn.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         Pac_Delete_btn.setText("Apagar");
+        Pac_Delete_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Pac_Delete_btnActionPerformed(evt);
+            }
+        });
 
         Pac_Update_btn.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         Pac_Update_btn.setText("Editar");
@@ -209,19 +246,25 @@ public class TelaPacienteR extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Pacientes_jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Pacientes_jListMouseClicked
+    private void Trat_jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Trat_jListMouseClicked
         // DoubleClick in elements
         if (evt.getClickCount() == 2) {
-            int index = Pacientes_jList.locationToIndex(evt.getPoint());
-            System.out.println(index);
+            int index = Trat_jList.locationToIndex(evt.getPoint());
 
+            // Select Tratamento using id
+            TratamentoController trat = new TratamentoController();
+            Tratamento t = trat.getTratamento(id.get(index));
+            
+            // Select Pagameto
+            PagamentoController pag = new PagamentoController();
+            Pagamento p = pag.getPagamento(t.getId());
+            
             // Isso aqui tem q ir pro controllers
-            Paciente p = new Paciente(12, "1231231", Pacientes_jList.getSelectedValue(), "232131231", "endereco", 123);
-            TelaPacienteR read = new TelaPacienteR(p);
+            TelaTratamento tra = new TelaTratamento(t,p);
             this.dispose();
-            read.setVisible(true);
+            tra.setVisible(true);
         }
-    }//GEN-LAST:event_Pacientes_jListMouseClicked
+    }//GEN-LAST:event_Trat_jListMouseClicked
 
     /**
      * Back to the main screen of user, TelaMedico
@@ -232,6 +275,31 @@ public class TelaPacienteR extends javax.swing.JFrame {
         this.dispose();
         medico.setVisible(true);
     }//GEN-LAST:event_Back_btnActionPerformed
+
+    /**
+     * Use the PacienteController for delete the Paciente being instantiated on this screen
+     * Make a confirmation before delete
+     */
+    private void Pac_Delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pac_Delete_btnActionPerformed
+        // Delete Paciente
+        boolean req;
+        int showConfirmDialog;
+        showConfirmDialog = JOptionPane.showConfirmDialog(rootPane, "Certeza que quer apagar\n"+Nome_lbl.getText()+"?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+
+        if(showConfirmDialog == 0){ // Yes == 0
+            PacienteController paciente = new PacienteController();
+            req = paciente.deletePaciente(Cpf_lbl.getText());
+            if (req){
+                JOptionPane.showMessageDialog(rootPane, "Paciente deletado com sucesso!", "Deletar", JOptionPane.INFORMATION_MESSAGE);
+                // Back to TelaMedico
+                TelaMedico med = new TelaMedico();
+                med.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Houve um erro ao deletar o Paciente!", "Deletar", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_Pac_Delete_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,8 +346,8 @@ public class TelaPacienteR extends javax.swing.JFrame {
     private javax.swing.JLabel Nome_lbl;
     private javax.swing.JButton Pac_Delete_btn;
     private javax.swing.JButton Pac_Update_btn;
-    private javax.swing.JList<String> Pacientes_jList;
     private javax.swing.JLabel Tel_lbl;
+    private javax.swing.JList<String> Trat_jList;
     private javax.swing.JLabel Trat_lbl;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -33,8 +33,6 @@ public class LoginController {
             Medico medico = m.selectMedicoLogin(crm_int, pass);  
             
             if(medico!=null){ // Login sucess
-                TelaMedico principal = new TelaMedico();
-                principal.setVisible(true);
                 Logged.setCrm(crm_int);
                 return true;
             } 

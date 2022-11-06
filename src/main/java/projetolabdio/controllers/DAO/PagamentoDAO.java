@@ -14,8 +14,8 @@ public class PagamentoDAO extends ConnectionDAO{
     boolean sucesso = false; //Para saber se funcionou
 
     /**
-     * Function for CREATE a new object in the table "Medico"
-     * @param pagamento Object of Medico that will be created
+     * Function for CREATE a new object in the table "Pagamento"
+     * @param pagamento Object of Pagamento that will be created
      * @return boolean variable (1 - success) (2 - fail)
      */
     public boolean insertPagamento(Pagamento pagamento) { //CREATE
@@ -60,18 +60,16 @@ public class PagamentoDAO extends ConnectionDAO{
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1,ID);
-            st = con.createStatement();
-            rs = st.executeQuery(sql);
+            rs = pst.executeQuery();
 
             while (rs.next()) {
-                pagamento = new Pagamento(rs.getInt("id"), rs.getInt("parcelas"),rs.getString("forma"),rs.getDate("data"), rs.getBoolean("pago"), rs.getInt("Tratamento_idTratamento"));
+                pagamento = new Pagamento(rs.getInt("idPagamento"), rs.getInt("parcelas"),rs.getString("forma"),rs.getDate("data"), rs.getBoolean("pago"), rs.getInt("Tratamento_idTratamento"));
             }
         } catch (SQLException e) {
             System.out.println("Erro: " + e.getMessage());
         } finally {
             try {
                 con.close();
-                st.close();
             } catch (SQLException e) {
                 System.out.println("Erro: " + e.getMessage());
             }

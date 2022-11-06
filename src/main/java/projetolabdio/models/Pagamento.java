@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Pagamento {
     // ATRB
-    private int id;
+    private int idPagamento;
     private int parcelas;
     private String forma;
     private Date data;
@@ -21,7 +21,7 @@ public class Pagamento {
 
     // CONSTRUCTOR
     public Pagamento(int id, int parcelas, String forma, Date data, Boolean pago, int tratamento_idTratamento) {
-        this.id = id;
+        this.idPagamento = id;
         this.parcelas = parcelas;
         this.forma = forma;
         this.data = data;
@@ -30,7 +30,7 @@ public class Pagamento {
     }
 
     public int getId() {
-        return id;
+        return idPagamento;
     }
 
     public int getParcelas() {

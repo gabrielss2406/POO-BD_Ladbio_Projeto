@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Paciente` (
 -- Table `mydb`.`Tratamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Tratamento` (
-  `idTratamento` INT NOT NULL,
+  `idTratamento` INT AUTO_INCREMENT NOT NULL,
   `descricao` VARCHAR(45) NOT NULL,
   `data` DATE NOT NULL,
   `preco` FLOAT NOT NULL,
@@ -86,3 +86,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Medico_has_Tratamento` (
     REFERENCES `mydb`.`Tratamento` (`idTratamento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+ALTER TABLE Paciente 
+    CHANGE Medico_cpf Medico_crm INT NOT NULL;
+SELECT * FROM Paciente;

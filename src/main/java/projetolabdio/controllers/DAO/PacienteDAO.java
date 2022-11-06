@@ -148,12 +148,12 @@ public class PacienteDAO extends ConnectionDAO{
      * @param CPF Primary key of "Paciente" table
      * @return boolean variable (1 - success) (2 - fail)
      */
-    public boolean deletePaciente(int CPF) { //DELETE
+    public boolean deletePaciente(String CPF) { //DELETE
         connectToDB();
-        String sql = "DELETE FROM Paciente where id=?";
+        String sql = "DELETE FROM Paciente where cpf=?";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, CPF);
+            pst.setString(1, CPF);
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {

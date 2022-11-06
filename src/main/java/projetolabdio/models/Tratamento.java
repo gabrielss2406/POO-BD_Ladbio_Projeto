@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Tratamento {
     // ATRB
-    private int id;
+    private int idTratamento;
     private float preco;
     private String descricao;
     private Date data;
@@ -20,7 +20,7 @@ public class Tratamento {
 
     // CONSTRUCTOR
     public Tratamento(int id, float preco, String descricao, Date data, String paciente_cpf) {
-        this.id = id;
+        this.idTratamento = id;
         this.preco = preco;
         this.descricao = descricao;
         this.data = data;
@@ -28,7 +28,7 @@ public class Tratamento {
     }
 
     public int getId() {
-        return id;
+        return idTratamento;
     }
 
     public float getPreco() {

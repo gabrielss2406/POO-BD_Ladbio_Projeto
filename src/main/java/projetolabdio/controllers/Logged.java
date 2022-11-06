@@ -16,10 +16,17 @@ public class Logged {
     private static int crm = 0;
 
     // Getters and Setters
+    /**
+     * Method get for logged Medico's Crm
+     * @return database name
+     */
     public static int getCrm() {
         return crm;
     }
 
+    /**
+     * Method set for logged Medico's Crm
+     */
     public static void setCrm(int crm) {
         Logged.crm = crm;
     }

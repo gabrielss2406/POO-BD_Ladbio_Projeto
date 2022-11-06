@@ -12,10 +12,10 @@ package projetolabdio.config;
  * @version 1.0
  */
 public class Db_Config {
-    private final String database = "sql10538911";//DB name
-    private final String user = "sql10538911"; //DB string
-    private final String password = "aVJg18QkdD"; //DB password
-    private final String url = "jdbc:mysql://sql10.freemysqlhosting.net:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true"; //DB url
+    private final String database = "mydb";//nome do BD
+    private final String user = "root";
+    private final String password = "root";
+    private final String url = "jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
 
     //Getters
 

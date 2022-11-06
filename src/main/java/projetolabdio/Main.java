@@ -4,7 +4,7 @@ import projetolabdio.views.user_auth.TelaLogin;
 
 /**
  * Main class, starts the program and make instances class attributes
- * @author Gabriel Siqueira
+ * @author Francisco Pereira Guimaraes, Gabriel Siqueira
  * @since 31/10/22
  * @version 1.1 (with Logged system)
  */
