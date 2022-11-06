@@ -84,7 +84,7 @@ public class PagamentoDAO extends ConnectionDAO{
      */
     public boolean updatePagamento(int id) { //UPDATE
         connectToDB();
-        String sql = "UPDATE Pagamento SET pago=1 where id=?";
+        String sql = "UPDATE Pagamento SET pago=1 where idPagamento=?";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1,id);

@@ -84,7 +84,7 @@ public class TratamentoDAO extends ConnectionDAO{
      * @param ID Primary key of "Tratamento" table
      * @return a list with all the information of the Tratamento found
      */
-    public Tratamento selectPaciente(int ID) { //SELECT INFORMATIONS OF THIS ID
+    public Tratamento selectTratamentoPaciente(int ID) { //SELECT INFORMATIONS OF THIS ID
         connectToDB();
         String sql = "SELECT * FROM Tratamento WHERE idTratamento=?";
         Tratamento tratamento = null;

@@ -6,6 +6,8 @@ package projetolabdio.views;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import projetolabdio.controllers.TratamentoController;
 import projetolabdio.models.Pagamento;
 import projetolabdio.models.Tratamento;
 
@@ -27,11 +29,17 @@ public class TelaTratamento extends javax.swing.JFrame {
         Data_lbl.setText(df.format(t.getData()));
         Prec_lbl.setText(Float.toString(t.getPreco()));
         Cpf_lbl.setText(t.getPaciente_cpf());
+        Id_lbl.setText(Integer.toString(p.getId()));
         
         // Set labels Pagamento
         Parc_lbl.setText(Integer.toString(p.getParcelas()));
         Form_lbl.setText(p.getForma());
         DataPag_lbl.setText(df.format(p.getData()));
+        if(p.getPago()){
+            PagStatus_lbl.setText("Pago");
+            Pac_Update_btn.setEnabled(false);
+        } else
+            PagStatus_lbl.setText("Não pago");
         
     }
 
@@ -55,7 +63,6 @@ public class TelaTratamento extends javax.swing.JFrame {
         Prec_lbl = new javax.swing.JLabel();
         Cpf_lbl = new javax.swing.JLabel();
         Dados_lbl = new javax.swing.JLabel();
-        Pac_Delete_btn = new javax.swing.JButton();
         Pac_Update_btn = new javax.swing.JButton();
         Back_btn = new javax.swing.JButton();
         Dados_lbl1 = new javax.swing.JLabel();
@@ -66,6 +73,8 @@ public class TelaTratamento extends javax.swing.JFrame {
         Parc_lbl = new javax.swing.JLabel();
         Form_lbl = new javax.swing.JLabel();
         DataPag_lbl = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        Id_lbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         PagStatus_lbl = new javax.swing.JLabel();
 
@@ -132,24 +141,21 @@ public class TelaTratamento extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(Cpf_lbl))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Dados_lbl.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         Dados_lbl.setForeground(new java.awt.Color(255, 255, 255));
         Dados_lbl.setText("Dados Tratamento:");
 
-        Pac_Delete_btn.setBackground(new java.awt.Color(255, 102, 102));
-        Pac_Delete_btn.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
-        Pac_Delete_btn.setText("Apagar");
-        Pac_Delete_btn.addActionListener(new java.awt.event.ActionListener() {
+        Pac_Update_btn.setBackground(new java.awt.Color(102, 204, 0));
+        Pac_Update_btn.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        Pac_Update_btn.setText("Atualizar pagamento");
+        Pac_Update_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Pac_Delete_btnActionPerformed(evt);
+                Pac_Update_btnActionPerformed(evt);
             }
         });
-
-        Pac_Update_btn.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
-        Pac_Update_btn.setText("Editar");
 
         Back_btn.setBackground(new java.awt.Color(204, 204, 255));
         Back_btn.setFont(new java.awt.Font("Bahnschrift", 0, 12)); // NOI18N
@@ -173,6 +179,9 @@ public class TelaTratamento extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         jLabel8.setText("Forma:");
 
+        jLabel9.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        jLabel9.setText("ID:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -185,14 +194,19 @@ public class TelaTratamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Parc_lbl))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DataPag_lbl)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Form_lbl))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DataPag_lbl)))
-                .addContainerGap(642, Short.MAX_VALUE))
+                        .addComponent(Id_lbl)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,13 +223,18 @@ public class TelaTratamento extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(DataPag_lbl))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(Id_lbl))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         jLabel1.setText("Status do pagamento:");
 
-        PagStatus_lbl.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        PagStatus_lbl.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        PagStatus_lbl.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -240,12 +259,12 @@ public class TelaTratamento extends javax.swing.JFrame {
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(PagStatus_lbl)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Pac_Update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Pac_Delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(106, 106, 106))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 328, Short.MAX_VALUE)
+                .addComponent(Pac_Update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(311, 311, 311))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,22 +275,17 @@ public class TelaTratamento extends javax.swing.JFrame {
                 .addComponent(Dados_lbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addComponent(Dados_lbl1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(PagStatus_lbl))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel1)))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Pac_Update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Pac_Delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(PagStatus_lbl))
+                .addGap(34, 34, 34)
+                .addComponent(Pac_Update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -288,16 +302,31 @@ public class TelaTratamento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Pac_Delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pac_Delete_btnActionPerformed
-        // Delete Tratamento
-    }//GEN-LAST:event_Pac_Delete_btnActionPerformed
-
     private void Back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_btnActionPerformed
-        // Back to TelaMedico
+        // Back to TelaPacienteR
         TelaMedico medico = new TelaMedico();
         this.dispose();
         medico.setVisible(true);
     }//GEN-LAST:event_Back_btnActionPerformed
+
+    private void Pac_Update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pac_Update_btnActionPerformed
+        // Delete Paciente
+        boolean req;
+        int showConfirmDialog;
+        showConfirmDialog = JOptionPane.showConfirmDialog(rootPane, "Certeza que quer atualizar esse pagamento?", "Atualizar", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+        if(showConfirmDialog == 0){ // Yes == 0
+            TratamentoController tratamento = new TratamentoController();
+            req = tratamento.deleteTratamento(Integer.parseInt(Id_lbl.getText()));
+            if (req){
+                JOptionPane.showMessageDialog(rootPane, "Pagamento atualizado com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
+                PagStatus_lbl.setText("Pago");
+                Pac_Update_btn.setEnabled(false);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Pagamento não conseguiu ser atualizado!", "Atualizar", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_Pac_Update_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,7 +358,9 @@ public class TelaTratamento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaTratamento().setVisible(true);
+                Tratamento Tratamento = null;
+                Pagamento Pagamento = null;
+                new TelaTratamento(Tratamento, Pagamento).setVisible(true);
             }
         });
     }
@@ -343,7 +374,7 @@ public class TelaTratamento extends javax.swing.JFrame {
     private javax.swing.JLabel Data_lbl;
     private javax.swing.JLabel Desc_lbl;
     private javax.swing.JLabel Form_lbl;
-    private javax.swing.JButton Pac_Delete_btn;
+    private javax.swing.JLabel Id_lbl;
     private javax.swing.JButton Pac_Update_btn;
     private javax.swing.JLabel PagStatus_lbl;
     private javax.swing.JLabel Parc_lbl;
@@ -356,6 +387,7 @@ public class TelaTratamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

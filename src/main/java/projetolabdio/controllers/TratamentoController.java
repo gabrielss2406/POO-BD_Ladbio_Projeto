@@ -4,6 +4,7 @@
  */
 package projetolabdio.controllers;
 
+import projetolabdio.controllers.DAO.PagamentoDAO;
 import projetolabdio.controllers.DAO.TratamentoDAO;
 import projetolabdio.models.Tratamento;
 
@@ -16,8 +17,17 @@ public class TratamentoController {
     public Tratamento getTratamento(int id){
         TratamentoDAO t = new TratamentoDAO();
         
-        Tratamento trat = t.selectPaciente(id); 
+        Tratamento trat = t.selectTratamentoPaciente(id); 
         
         return trat;
+    }
+    
+    public boolean deleteTratamento(int id){
+        PagamentoDAO pag = new PagamentoDAO();
+        boolean req;
+
+        req = pag.updatePagamento(id);
+
+        return req;
     }
 }
