@@ -7,18 +7,24 @@ package projetolabdio.views;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+
+import projetolabdio.controllers.PagamentoController;
 import projetolabdio.controllers.TratamentoController;
 import projetolabdio.models.Pagamento;
 import projetolabdio.models.Tratamento;
 
 /**
- *
- * @author gabri
+ * The individual screen of Tratamento
+ * @author Gabriel Siqueira
+ * @since 07/11/2022
+ * @version 1.0
  */
 public class TelaTratamento extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaTratamento
+     * And set labels with the Tratamento obj data
+     * And set other labels with the Pagamento obj data
      */
     public TelaTratamento(Tratamento t, Pagamento p) {
         initComponents();
@@ -302,22 +308,29 @@ public class TelaTratamento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Back to the main screen TelaMedico
+     */
     private void Back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_btnActionPerformed
-        // Back to TelaPacienteR
+        // Back to TelaMedico
         TelaMedico medico = new TelaMedico();
         this.dispose();
         medico.setVisible(true);
     }//GEN-LAST:event_Back_btnActionPerformed
 
+    /**
+     * Use the PagamentoController for update the Pagamento of the Tratamento being instantiated on this screen
+     * Make a confirmation before update
+     */
     private void Pac_Update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pac_Update_btnActionPerformed
-        // Delete Paciente
+        // Update Pagamento
         boolean req;
         int showConfirmDialog;
         showConfirmDialog = JOptionPane.showConfirmDialog(rootPane, "Certeza que quer atualizar esse pagamento?", "Atualizar", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
         if(showConfirmDialog == 0){ // Yes == 0
-            TratamentoController tratamento = new TratamentoController();
-            req = tratamento.deleteTratamento(Integer.parseInt(Id_lbl.getText()));
+            PagamentoController pagamento = new PagamentoController();
+            req = pagamento.updatePagamento(Integer.parseInt(Id_lbl.getText()));
             if (req){
                 JOptionPane.showMessageDialog(rootPane, "Pagamento atualizado com sucesso!", "Atualizar", JOptionPane.INFORMATION_MESSAGE);
                 PagStatus_lbl.setText("Pago");

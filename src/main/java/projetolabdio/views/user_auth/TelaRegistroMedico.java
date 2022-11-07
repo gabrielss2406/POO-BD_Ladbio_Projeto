@@ -7,8 +7,10 @@ package projetolabdio.views.user_auth;
 import java.awt.Color;
 
 /**
- *
- * @author aluno
+ * The register new Medico screen
+ * @author Gabriel Siqueira
+ * @since 07/11/22
+ * @version 1.0
  */
 public class TelaRegistroMedico extends javax.swing.JFrame {
 
@@ -223,6 +225,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Placeholder function of UserTel_txtField
+     * Remove the placeholder when gain focus
+     */
     private void UserTel_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserTel_txtFieldFocusGained
         // Placeholder exit
         String user = UserTel_txtField.getText();
@@ -231,7 +237,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             UserTel_txtField.setText("");
         }
     }//GEN-LAST:event_UserTel_txtFieldFocusGained
-
+    /**
+     * Placeholder function of UserTel_Field
+     * Return the placeholder when lost focus
+     */
     private void UserTel_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserTel_txtFieldFocusLost
         // Placeholder back
         String user = UserTel_txtField.getText();
@@ -240,7 +249,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             UserTel_txtField.setText("Insira seu telefone");
         }
     }//GEN-LAST:event_UserTel_txtFieldFocusLost
-
+    /**
+     * Placeholder function of UserEspec_txtField
+     * Remove the placeholder when gain focus
+     */
     private void UserEspec_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserEspec_txtFieldFocusGained
         // Placeholder exit
         String user = UserEspec_txtField.getText();
@@ -249,7 +261,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             UserEspec_txtField.setText("");
         }
     }//GEN-LAST:event_UserEspec_txtFieldFocusGained
-
+    /**
+     * Placeholder function of UserEspec_Field
+     * Return the placeholder when lost focus
+     */
     private void UserEspec_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserEspec_txtFieldFocusLost
          // Placeholder back
         String user = UserEspec_txtField.getText();
@@ -258,7 +273,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             UserEspec_txtField.setText("Insira sua especialidade");
         }
     }//GEN-LAST:event_UserEspec_txtFieldFocusLost
-
+    /**
+     * Placeholder function of UserCrm_txtField
+     * Remove the placeholder when gain focus
+     */
     private void UserCrm_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserCrm_txtFieldFocusGained
         // Placeholder exit
         String user = UserCrm_txtField.getText();
@@ -267,7 +285,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             UserCrm_txtField.setText("");
         }
     }//GEN-LAST:event_UserCrm_txtFieldFocusGained
-
+    /**
+     * Placeholder function of UserCrm_Field
+     * Return the placeholder when lost focus
+     */
     private void UserCrm_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserCrm_txtFieldFocusLost
         // Placeholder back
         String user = UserCrm_txtField.getText();
@@ -276,7 +297,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             UserCrm_txtField.setText("Insira seu CRM");
         }
     }//GEN-LAST:event_UserCrm_txtFieldFocusLost
-
+    /**
+     * Placeholder function of UserName_txtField
+     * Remove the placeholder when gain focus
+     */
     private void UserName_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserName_txtFieldFocusGained
         // Placeholder exit
         String user = UserName_txtField.getText();
@@ -285,7 +309,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             UserName_txtField.setText("");
         }
     }//GEN-LAST:event_UserName_txtFieldFocusGained
-
+    /**
+     * Placeholder function of UserName_Field
+     * Return the placeholder when lost focus
+     */
     private void UserName_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserName_txtFieldFocusLost
         // Placeholder back
         String user = UserName_txtField.getText();
@@ -294,14 +321,19 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             UserName_txtField.setText("Insira seu nome");
         }
     }//GEN-LAST:event_UserName_txtFieldFocusLost
-
+    /**
+     * Back to the login screen
+     */
     private void Login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_btnActionPerformed
         // Back to login
         TelaLogin login = new TelaLogin();
         this.dispose();
         login.setVisible(true);
     }//GEN-LAST:event_Login_btnActionPerformed
-
+    /**
+     * Placeholder function of UserPass_passField
+     * Remove the placeholder when gain focus
+     */
     private void UserPass_passFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserPass_passFieldFocusGained
         // Placeholder exit
         String pass = new String(UserPass_passField.getPassword());
@@ -310,7 +342,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             UserPass_passField.setText("");
         }
     }//GEN-LAST:event_UserPass_passFieldFocusGained
-
+    /**
+     * Placeholder function of UserPass_passField
+     * Return the placeholder when lost focus
+     */
     private void UserPass_passFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserPass_passFieldFocusLost
         // Placeholder back
         String pass = new String(UserPass_passField.getPassword());

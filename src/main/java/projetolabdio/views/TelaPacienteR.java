@@ -20,7 +20,7 @@ import projetolabdio.models.Tratamento;
  * The individual screen of Paciente
  * @author Gabriel Siqueira
  * @since 01/11/2022
- * @version 1.0 (whitout delete and update system)
+ * @version 1.2 (whitout update system)
  */
 public class TelaPacienteR extends javax.swing.JFrame {
     
@@ -43,9 +43,10 @@ public class TelaPacienteR extends javax.swing.JFrame {
         
         // Search and set Tratamento and Pagamento jList
         PacienteController pac = new PacienteController();
+        TratamentoController trat = new TratamentoController();
         DefaultListModel model = new DefaultListModel();
         ArrayList<Tratamento> tratamentos = pac.selectTratamento(p.getCpf()); // Select tratamentos
-        ArrayList<Pagamento> pagamentos = pac.selectTratamentoPagamento(tratamentos); // Select pagamentos
+        ArrayList<Pagamento> pagamentos = trat.selectTratamentoPagamento(tratamentos); // Select pagamentos
         
         // Set model
         for(int i=0; i<tratamentos.size(); i++) // Set model jList
@@ -246,6 +247,10 @@ public class TelaPacienteR extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Capture double clicks on Trat_jList
+     * Call the TratamentoController and PagamentoController to redirect to the individual Tratamento screen
+     */
     private void Trat_jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Trat_jListMouseClicked
         // DoubleClick in elements
         if (evt.getClickCount() == 2) {

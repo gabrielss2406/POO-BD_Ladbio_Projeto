@@ -6,14 +6,23 @@ package projetolabdio.controllers;
 
 import projetolabdio.controllers.DAO.PagamentoDAO;
 import projetolabdio.controllers.DAO.TratamentoDAO;
+import projetolabdio.models.Pagamento;
 import projetolabdio.models.Tratamento;
 
+import java.util.ArrayList;
+
 /**
- *
+ * Controller for Tratamento actions in TelaTratamento
  * @author Gabriel Siqueira
+ * @since 07/11/2022
+ * @version 1.0
  */
 public class TratamentoController {
-    
+    /**
+     * Consults the database (DAO Controllers) and get one Tratamento researched by id
+     * @param id Primary key of "Tratamento" table
+     * @return Researched tratamento object
+     */
     public Tratamento getTratamento(int id){
         TratamentoDAO t = new TratamentoDAO();
         
@@ -21,13 +30,21 @@ public class TratamentoController {
         
         return trat;
     }
-    
-    public boolean deleteTratamento(int id){
+
+    /**
+     * Consults the database (DAO Controllers) and get the list of all Pagamento related to Tratamento
+     * @param tratamentos List of Tratamento to seach related Pagamento
+     * @return Researched Pagamento list
+     */
+    public ArrayList<Pagamento> selectTratamentoPagamento(ArrayList<Tratamento> tratamentos){
         PagamentoDAO pag = new PagamentoDAO();
-        boolean req;
+        ArrayList<Pagamento> pagamentos = new ArrayList<>();
 
-        req = pag.updatePagamento(id);
+        // Select pagamento status
+        for(Tratamento t : tratamentos){
+            pagamentos.add(pag.selectPagamento(t.getId()));
+        }
 
-        return req;
+        return pagamentos;
     }
 }

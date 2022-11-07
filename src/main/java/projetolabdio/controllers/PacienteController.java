@@ -37,30 +37,13 @@ public class PacienteController {
      * @param cpf Primary key of Paciente table
      * @return Researched Tratamento list
      */
-    public ArrayList<Tratamento> selectTratamento(String cpf){
+    public ArrayList<Tratamento> selectTratamento(String cpf) {
         TratamentoDAO trat = new TratamentoDAO();
         ArrayList<Tratamento> tratamentos = new ArrayList<>();
-        
+
         // Select tratamento
         tratamentos = trat.selectTratamento(cpf);
-        
+
         return tratamentos;
-    }
-    
-    /**
-     * Consults the database (DAO Controllers) and get the list of all Pagamento related to Tratamento
-     * @param tratamentos List of Tratamento to seach related Pagamento
-     * @return Researched Pagamento list
-     */
-    public ArrayList<Pagamento> selectTratamentoPagamento(ArrayList<Tratamento> tratamentos){
-        PagamentoDAO pag = new PagamentoDAO();
-        ArrayList<Pagamento> pagamentos = new ArrayList<>();
-        
-        // Select pagamento status
-        for(Tratamento t : tratamentos){
-            pagamentos.add(pag.selectPagamento(t.getId()));
-        }
-        
-        return pagamentos;
     }
 }
