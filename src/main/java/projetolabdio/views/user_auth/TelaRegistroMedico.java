@@ -4,6 +4,9 @@
  */
 package projetolabdio.views.user_auth;
 
+import projetolabdio.controllers.RegistroController;
+import projetolabdio.views.TelaMedico;
+
 import java.awt.Color;
 
 /**
@@ -360,10 +363,25 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_UserCrm_txtFieldActionPerformed
 
     private void Cad_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cad_btnActionPerformed
-        // Create new user / back to login
-        TelaLogin login = new TelaLogin();
-        this.dispose();
-        login.setVisible(true);
+        //Create user
+        String crm = UserCrm_txtField.getText();
+        String pass = new String(UserPass_passField.getPassword());
+        String name = UserName_txtField.getText();
+        String especialidade = UserEspec_txtField.getText();
+        String telefone = UserTel_txtField.getText();
+
+        //Create RegistroController object
+        RegistroController registro = new RegistroController();
+
+        //Register a new Medico
+        boolean funcionou = registro.Registro(crm, name, especialidade, telefone, pass);
+
+        //Back to login
+        if(funcionou){ // Navegate if register sucess
+            TelaLogin login = new TelaLogin();
+            this.dispose();
+            login.setVisible(true);
+        }
     }//GEN-LAST:event_Cad_btnActionPerformed
 
     /**
