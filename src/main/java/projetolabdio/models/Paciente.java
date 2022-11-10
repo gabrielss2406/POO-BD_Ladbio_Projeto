@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package projetolabdio.models;
 
-import java.util.Date;
-
 /**
- *
- * @author aluno
+ * Model of Paciente
+ * @author Gabriel Siqueira
+ * @since 10/11/22
+ * @version 1.0
  */
 public class Paciente {
     // ATRB
@@ -20,8 +16,16 @@ public class Paciente {
     private int Medico_crm;
     //private Date data_nasc;
 
-    // CONSTRUCTOR
-    public Paciente(int idade, String cpf, String nome, String telefone, String endereco, int medico_crm/*, Date data_nasc*/) {
+    /**
+     * Constructor method from Paciente
+     * @param idade Attribute phone of Paciente
+     * @param cpf Primary key of Paciente
+     * @param nome Attribute phone of Paciente
+     * @param telefone Attribute phone of Paciente
+     * @param endereco Attribute phone of Paciente
+     * @param medico_crm Foreing key for Medico
+     */
+    public Paciente(int idade, String cpf, String nome, String telefone, String endereco, int medico_crm/*, Date data_nasc*/) { // CONSTRUCTOR
         this.idade = idade;
         this.cpf = cpf;
         this.nome = nome;
@@ -33,25 +37,50 @@ public class Paciente {
     
     // GETTERS
 
+    /**
+     * Getter of idade
+     * @return idade
+     */
     public int getIdade() {
         return idade;
     }
 
+    /**
+     * Getter of cpf
+     * @return cpf
+     */
     public String getCpf() {
         return cpf;
     }
 
+    /**
+     * Getter of nome
+     * @return nome
+     */
     public String getNome() {
         return nome;
     }
 
+    /**
+     * Getter of telefone
+     * @return telefone
+     */
     public String getTelefone() {
         return telefone;
     }
+
+    /**
+     * Getter of endereco
+     * @return endereco
+     */
     public String getEndereco() {
         return endereco;
     }
 
+    /**
+     * Getter of Medico_crm
+     * @return Medico_crm
+     */
     public int getMedico_crm() {
         return Medico_crm;
     }

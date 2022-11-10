@@ -24,7 +24,7 @@ public class MedicoDAO extends ConnectionDAO{
         String sql = "INSERT INTO Medico() values(?,?,?,?,?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, String.valueOf(medico.getCrm()));
+            pst.setInt(1, medico.getCrm());
             pst.setString(2, medico.getNome());
             pst.setString(3, medico.getEspecialidade());
             pst.setString(4, medico.getTelefone());

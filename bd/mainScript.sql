@@ -25,10 +25,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Paciente` (
   `endereco` VARCHAR(45) NOT NULL,
   `telefone` VARCHAR(45) NOT NULL,
   `idade` INT NOT NULL,
-  `Medico_cpf` INT NOT NULL,
+  `Medico_crm` INT NOT NULL,
   PRIMARY KEY (`cpf`),
   CONSTRAINT `fk_Paciente_Medico`
-    FOREIGN KEY (`Medico_cpf`)
+    FOREIGN KEY (`Medico_crm`)
     REFERENCES `mydb`.`Medico` (`crm`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Tratamento` (
 -- Table `mydb`.`Pagamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Pagamento` (
-  `idPagamento` INT NOT NULL,
+  `idPagamento` INT AUTO_INCREMENT NOT NULL,
   `parcelas` INT NOT NULL,
   `forma` VARCHAR(45) NOT NULL,
   `data` DATE NOT NULL,
