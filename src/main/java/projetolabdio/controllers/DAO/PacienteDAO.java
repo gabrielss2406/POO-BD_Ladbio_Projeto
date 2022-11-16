@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Class to CREATE, READ, UPDATE, DELETE objects of the table "Paciente"
  * @author Francisco Pereira Guimaraes
  * @since 02/11/2022
- * @version 1.0
+ * @version 2.0
  */
 public class PacienteDAO extends ConnectionDAO{
     //DAO - Data Access Object
