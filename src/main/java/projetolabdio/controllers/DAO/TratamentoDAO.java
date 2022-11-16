@@ -19,17 +19,16 @@ public class TratamentoDAO extends ConnectionDAO{
      * @return boolean variable (1 - success) (2 - fail)
      */
     public boolean insertTratamento(Tratamento tratamento) { //CREATE
-
         connectToDB();
 
-        String sql = "INSERT INTO Tratamento() values(?,?,?,?)";
+        String sql = "INSERT INTO Tratamento() values(?,?,?,?,?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, String.valueOf(tratamento.getId()));
-            pst.setString(2, String.valueOf(tratamento.getPreco()));
+            pst.setInt(1, tratamento.getId());
+            pst.setFloat(2, tratamento.getPreco());
             pst.setString(3, tratamento.getDescricao());
-            pst.setString(4, String.valueOf(tratamento.getData()));
-            //pst.setString(3, tratamento.getFKpaciente);
+            pst.setString(4, tratamento.getData());
+            pst.setString(5, tratamento.getPaciente_cpf());
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -62,7 +61,7 @@ public class TratamentoDAO extends ConnectionDAO{
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                Tratamento tratamentoAux = new Tratamento(rs.getInt("idTratamento"),rs.getFloat("preco"),rs.getString("descricao"), rs.getDate("data"), rs.getString("Paciente_cpf"));
+                Tratamento tratamentoAux = new Tratamento(rs.getInt("idTratamento"),rs.getFloat("preco"),rs.getString("descricao"), rs.getString("data"), rs.getString("Paciente_cpf"));
                 tratamentos.add(tratamentoAux);
             }
             sucesso = true;
@@ -95,7 +94,7 @@ public class TratamentoDAO extends ConnectionDAO{
             rs = pst.executeQuery();
 
             if(rs != null && rs.next()){
-                tratamento = new Tratamento(rs.getInt("idTratamento"),rs.getFloat("preco"),rs.getString("descricao"), rs.getDate("data"), rs.getString("Paciente_cpf"));
+                tratamento = new Tratamento(rs.getInt("idTratamento"),rs.getFloat("preco"),rs.getString("descricao"), rs.getString("data"), rs.getString("Paciente_cpf"));
             }
             sucesso = true;
         } catch (SQLException e) {

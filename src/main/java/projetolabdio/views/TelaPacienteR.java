@@ -89,6 +89,7 @@ public class TelaPacienteR extends javax.swing.JFrame {
         Pac_Delete_btn = new javax.swing.JButton();
         Pac_Update_btn = new javax.swing.JButton();
         Back_btn = new javax.swing.JButton();
+        Trat_add_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,7 +132,7 @@ public class TelaPacienteR extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(End_lbl)))
-                .addContainerGap(281, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,6 +192,15 @@ public class TelaPacienteR extends javax.swing.JFrame {
             }
         });
 
+        Trat_add_btn.setBackground(new java.awt.Color(0, 255, 51));
+        Trat_add_btn.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        Trat_add_btn.setText("Adicionar tratamento");
+        Trat_add_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Trat_add_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -204,14 +214,15 @@ public class TelaPacienteR extends javax.swing.JFrame {
                             .addComponent(Trat_lbl)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
-                        .addGap(160, 160, 160)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Pac_Update_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Pac_Delete_btn, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)))
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Pac_Delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Trat_add_btn)
+                            .addComponent(Pac_Update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,11 +236,15 @@ public class TelaPacienteR extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Pac_Update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(Trat_lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Pac_Delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Trat_lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Pac_Delete_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(Trat_add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -237,7 +252,7 @@ public class TelaPacienteR extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +280,7 @@ public class TelaPacienteR extends javax.swing.JFrame {
             Pagamento p = pag.getPagamento(t.getId());
             
             // Isso aqui tem q ir pro controllers
-            TelaTratamento tra = new TelaTratamento(t,p);
+            TelaTratamentoR tra = new TelaTratamentoR(t,p);
             this.dispose();
             tra.setVisible(true);
         }
@@ -305,6 +320,13 @@ public class TelaPacienteR extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_Pac_Delete_btnActionPerformed
+
+    private void Trat_add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Trat_add_btnActionPerformed
+        // Add new tratamento
+        TelaTratamentoC tratamento = new TelaTratamentoC(Cpf_lbl.getText());
+        this.dispose();
+        tratamento.setVisible(true);
+    }//GEN-LAST:event_Trat_add_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -352,6 +374,7 @@ public class TelaPacienteR extends javax.swing.JFrame {
     private javax.swing.JButton Pac_Delete_btn;
     private javax.swing.JButton Pac_Update_btn;
     private javax.swing.JLabel Tel_lbl;
+    private javax.swing.JButton Trat_add_btn;
     private javax.swing.JList<String> Trat_jList;
     private javax.swing.JLabel Trat_lbl;
     private javax.swing.JLabel jLabel2;

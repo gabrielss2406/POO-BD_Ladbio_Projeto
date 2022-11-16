@@ -4,12 +4,9 @@
  */
 package projetolabdio.views;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 import projetolabdio.controllers.PagamentoController;
-import projetolabdio.controllers.TratamentoController;
 import projetolabdio.models.Pagamento;
 import projetolabdio.models.Tratamento;
 
@@ -19,20 +16,19 @@ import projetolabdio.models.Tratamento;
  * @since 07/11/2022
  * @version 1.0
  */
-public class TelaTratamento extends javax.swing.JFrame {
+public class TelaTratamentoR extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaTratamento
      * And set labels with the Tratamento obj data
      * And set other labels with the Pagamento obj data
      */
-    public TelaTratamento(Tratamento t, Pagamento p) {
+    public TelaTratamentoR(Tratamento t, Pagamento p) {
         initComponents();
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         
         // Set labels Tratamento
         Desc_lbl.setText(t.getDescricao());
-        Data_lbl.setText(df.format(t.getData()));
+        Data_lbl.setText(t.getData());
         Prec_lbl.setText(Float.toString(t.getPreco()));
         Cpf_lbl.setText(t.getPaciente_cpf());
         Id_lbl.setText(Integer.toString(p.getId()));
@@ -40,7 +36,7 @@ public class TelaTratamento extends javax.swing.JFrame {
         // Set labels Pagamento
         Parc_lbl.setText(Integer.toString(p.getParcelas()));
         Form_lbl.setText(p.getForma());
-        DataPag_lbl.setText(df.format(p.getData()));
+        DataPag_lbl.setText(p.getData());
         if(p.getPago()){
             PagStatus_lbl.setText("Pago");
             Pac_Update_btn.setEnabled(false);
@@ -144,7 +140,7 @@ public class TelaTratamento extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(Prec_lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(Cpf_lbl))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -358,14 +354,15 @@ public class TelaTratamento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaTratamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTratamentoR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaTratamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTratamentoR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaTratamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTratamentoR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaTratamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTratamentoR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -373,7 +370,7 @@ public class TelaTratamento extends javax.swing.JFrame {
             public void run() {
                 Tratamento Tratamento = null;
                 Pagamento Pagamento = null;
-                new TelaTratamento(Tratamento, Pagamento).setVisible(true);
+                new TelaTratamentoR(Tratamento, Pagamento).setVisible(true);
             }
         });
     }

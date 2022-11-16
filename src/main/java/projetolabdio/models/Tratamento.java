@@ -13,24 +13,31 @@ public class Tratamento {
     private int idTratamento;
     private float preco;
     private String descricao;
-    private Date data;
+    private String data;
     private String Paciente_cpf;
 
     /**
      * Constructor method from Tratamento
-     * @param id Primary key of Tratamento
      * @param preco Attribute phone of Tratamento
      * @param descricao Attribute phone of Tratamento
      * @param data Attribute phone of Tratamento
      * @param paciente_cpf Foreing key for Paciente
      */
-    public Tratamento(int id, float preco, String descricao, Date data, String paciente_cpf) { // CONSTRUCTOR
-        this.idTratamento = id;
+    public Tratamento(float preco, String descricao, String data, String paciente_cpf) { // CONSTRUCTOR
         this.preco = preco;
         this.descricao = descricao;
         this.data = data;
         this.Paciente_cpf = paciente_cpf;
     }
+
+    public Tratamento(int idTratamento, float preco, String descricao, String data, String Paciente_cpf) {
+        this.idTratamento = idTratamento;
+        this.preco = preco;
+        this.descricao = descricao;
+        this.data = data;
+        this.Paciente_cpf = Paciente_cpf;
+    }
+    
 
     /**
      * Getter of idTratamento
@@ -60,7 +67,7 @@ public class Tratamento {
      * Getter of data
      * @return data
      */
-    public Date getData() {
+    public String getData() {
         return data;
     }
 

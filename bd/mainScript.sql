@@ -1,6 +1,7 @@
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `mydb`;
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
 
@@ -86,7 +87,3 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Medico_has_Tratamento` (
     REFERENCES `mydb`.`Tratamento` (`idTratamento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-
-ALTER TABLE Paciente 
-    CHANGE Medico_cpf Medico_crm INT NOT NULL;
-SELECT * FROM Paciente;

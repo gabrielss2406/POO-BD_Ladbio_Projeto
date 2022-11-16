@@ -47,4 +47,21 @@ public class TratamentoController {
 
         return pagamentos;
     }
+    
+    public boolean createTratamento(int id, String cpf, float preco, String descricao, String data, int parcelas, String forma){
+        boolean sucess;
+        
+        TratamentoDAO trat = new TratamentoDAO();
+        Tratamento tratamento = new Tratamento(id, preco, descricao, data, cpf);
+        
+        sucess = trat.insertTratamento(tratamento);
+        if(sucess){
+            PagamentoDAO pag = new PagamentoDAO();
+            Pagamento pagamento = new Pagamento(parcelas, forma, data, false, id);
+            sucess = pag.insertPagamento(pagamento);
+            return sucess;
+        }
+        return sucess;
+        
+    }
 }

@@ -12,15 +12,16 @@ D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\Main.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\config\Db_Config.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\controllers\PacienteController.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\controllers\PagamentoController.java
+D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\views\TelaTratamentoC.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\models\Medico.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\controllers\DAO\PagamentoDAO.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\views\user_auth\TelaLogin.java
-D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\views\TelaTratamento.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\controllers\DAO\PacienteDAO.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\controllers\LoginController.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\controllers\DAO\TratamentoDAO.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\models\Pagamento.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\controllers\DAO\ConnectionDAO.java
+D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\views\TelaTratamentoR.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\models\Paciente.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\controllers\DAO\MedicoDAO.java
 D:\Desktop\P4\POO-BD_Ladbio_Projeto\src\main\java\projetolabdio\views\user_auth\TelaRegistroMedico.java

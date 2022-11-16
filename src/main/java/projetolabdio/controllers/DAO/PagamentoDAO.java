@@ -22,15 +22,15 @@ public class PagamentoDAO extends ConnectionDAO{
 
         connectToDB();
 
-        String sql = "INSERT INTO Pagamento() values(?,?,?,?,?,?)";
+        String sql = "INSERT INTO Pagamento(parcelas, forma, data, pago, Tratamento_idTratamento) values(?,?,?,?,?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, String.valueOf(pagamento.getId()));
-            pst.setString(2, String.valueOf(pagamento.getParcelas()));
-            pst.setString(3, pagamento.getForma());
-            pst.setString(4, String.valueOf(pagamento.getData()));
-            pst.setString(5, String.valueOf(pagamento.getPago()));
-            //pst.setString(5, pagamento.FK Tratamento);
+            pst.setInt(1, pagamento.getParcelas());
+            pst.setString(2, pagamento.getForma());
+            pst.setString(3, pagamento.getData());
+            pst.setBoolean(4, pagamento.getPago());
+            pst.setInt(5, pagamento.getTratamento_idTratamento());
+            System.out.println(pst);
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -63,7 +63,7 @@ public class PagamentoDAO extends ConnectionDAO{
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                pagamento = new Pagamento(rs.getInt("idPagamento"), rs.getInt("parcelas"),rs.getString("forma"),rs.getDate("data"), rs.getBoolean("pago"), rs.getInt("Tratamento_idTratamento"));
+                pagamento = new Pagamento(rs.getInt("idPagamento"), rs.getInt("parcelas"),rs.getString("forma"),rs.getString("data"), rs.getBoolean("pago"), rs.getInt("Tratamento_idTratamento"));
             }
         } catch (SQLException e) {
             System.out.println("Erro: " + e.getMessage());

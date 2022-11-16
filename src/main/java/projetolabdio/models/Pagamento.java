@@ -13,27 +13,35 @@ public class Pagamento {
     private int idPagamento;
     private int parcelas;
     private String forma;
-    private Date data;
+    private String data;
     private Boolean pago;
     private int Tratamento_idTratamento;
 
     /**
      * Constructor method from Pagamento
-     * @param id Primary key of Pagamento
      * @param parcelas Attribute phone of Pagamento
      * @param forma Attribute phone of Pagamento
      * @param data Attribute phone of Pagamento
      * @param pago Attribute phone of Pagamento
      * @param tratamento_idTratamento Foreing key for Tratamento
      */
-    public Pagamento(int id, int parcelas, String forma, Date data, Boolean pago, int tratamento_idTratamento) { // CONSTRUCTOR
-        this.idPagamento = id;
+    public Pagamento(int parcelas, String forma, String data, Boolean pago, int tratamento_idTratamento) { // CONSTRUCTOR
         this.parcelas = parcelas;
         this.forma = forma;
         this.data = data;
         this.pago = pago;
         this.Tratamento_idTratamento = tratamento_idTratamento;
     }
+
+    public Pagamento(int idPagamento, int parcelas, String forma, String data, Boolean pago, int Tratamento_idTratamento) {
+        this.idPagamento = idPagamento;
+        this.parcelas = parcelas;
+        this.forma = forma;
+        this.data = data;
+        this.pago = pago;
+        this.Tratamento_idTratamento = Tratamento_idTratamento;
+    }
+    
 
     /**
      * Getter of idPagamento
@@ -63,7 +71,7 @@ public class Pagamento {
      * Getter of data
      * @return data
      */
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
