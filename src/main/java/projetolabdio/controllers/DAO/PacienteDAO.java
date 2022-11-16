@@ -4,7 +4,7 @@ import projetolabdio.models.Paciente;
 import java.sql.SQLException;
 import java.util.ArrayList;
 /**
- * Class for CREATE, READ, UPDATE, DELETE objects of the table "Paciente"
+ * Class to CREATE, READ, UPDATE, DELETE objects of the table "Paciente"
  * @author Francisco Pereira Guimaraes
  * @since 02/11/2022
  * @version 1.0
@@ -14,7 +14,7 @@ public class PacienteDAO extends ConnectionDAO{
     boolean sucesso = false; //Para saber se funcionou
 
     /**
-     * Function for CREATE a new object in the table "Medico"
+     * Function to CREATE a new object in the table "Medico"
      * @param paciente Object of Paciente that will be created
      * @return boolean variable (1 - success) (2 - fail)
      */
@@ -81,7 +81,7 @@ public class PacienteDAO extends ConnectionDAO{
     }
 
     /**
-     * Function to search all attributes for Paciente that have this CPF
+     * Function to search all attributes for Paciente who has this CPF
      * @param CPF Primary key of "Paciente" table
      * @return a list with all the information of the Paciente found
      */
@@ -113,19 +113,17 @@ public class PacienteDAO extends ConnectionDAO{
     }
 
     /**
-     * Function for update attributes of the Paciente that have this CPF
+     * Function to update the telefone of the Paciente who has this CPF
      * @param CPF Primary key of "Paciente" table
-     * @param atributo1 Attribute that will be updated
-     * @param atributo2 New attribute
+     * @param telefone Attribute that will be updated
      * @return boolean variable (1 - success) (2 - fail)
      */
-    public boolean updatePaciente(int CPF, String atributo1, String atributo2) { //UPDATE
+    public boolean updatePacienteTelefone(int CPF, String telefone) { //UPDATE
         connectToDB();
-        String sql = "UPDATE Paciente SET ?=? where id=?";
+        String sql = "UPDATE Paciente SET telefone=? where id=?";
         try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, atributo1);
-            pst.setString(2, atributo2);
+            pst.setString(1, telefone);
             pst.setInt(3,CPF);
             pst.execute();
             sucesso = true;
@@ -144,7 +142,36 @@ public class PacienteDAO extends ConnectionDAO{
     }
 
     /**
-     * Funtion for DELETE the Paciente that have this CPF
+     * Function to update the endereço of the Paciente who has this CPF
+     * @param CPF Primary key of "Paciente" table
+     * @param endereco Attribute that will be updated
+     * @return boolean variable (1 - success) (2 - fail)
+     */
+    public boolean updatePacienteEndereco(int CPF, String endereco) { //UPDATE
+        connectToDB();
+        String sql = "UPDATE Paciente SET endereco=? where id=?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, endereco);
+            pst.setInt(2,CPF);
+            pst.execute();
+            sucesso = true;
+        } catch (SQLException ex) {
+            System.out.println("Erro = " + ex.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+        return sucesso;
+    }
+
+    /**
+     * Funtion to DELETE the Paciente who has this CPF
      * @param CPF Primary key of "Paciente" table
      * @return boolean variable (1 - success) (2 - fail)
      */
