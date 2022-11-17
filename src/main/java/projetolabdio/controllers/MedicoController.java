@@ -6,7 +6,9 @@ package projetolabdio.controllers;
 
 import java.util.ArrayList;
 import projetolabdio.controllers.DAO.PacienteDAO;
+import projetolabdio.controllers.DAO.TratamentoDAO;
 import projetolabdio.models.Paciente;
+import projetolabdio.models.Tratamento;
 
 /**
  * Controller for Medico actions in TelaMedico
@@ -42,5 +44,18 @@ public class MedicoController {
         Paciente paciente = pac.selectPaciente(cpf);
         
         return paciente;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<Tratamento> selectTratamentosMedico(){
+        TratamentoDAO t = new TratamentoDAO();
+        ArrayList<Tratamento> trat = new ArrayList<>();
+        
+        trat = t.selectTratamentoMedico(Logged.getCrm()); 
+        
+        return trat;
     }
 }

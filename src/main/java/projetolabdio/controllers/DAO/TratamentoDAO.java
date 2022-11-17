@@ -109,4 +109,40 @@ public class TratamentoDAO extends ConnectionDAO{
         }
         return tratamento;
     }
+    
+    /**
+     * Function to search for all Tratamentos of the Medico with this CRM
+     * @param crm Primary key of "Medico" table
+     * @return a list with all Tratamentos found
+     */
+    public ArrayList<Tratamento> selectTratamentoMedico(int crm) { //READ
+        ArrayList<Tratamento> tratamentos = new ArrayList<>();
+        connectToDB();
+        String sql = "SELECT t.idTratamento, t.descricao, t.data, t.preco, t.Paciente_cpf FROM Tratamento as t\n" +
+                     "JOIN medico_has_tratamento as mt\n" +
+                     "WHERE mt.Medico_crm = ? AND mt.Tratamento_idTratamento = t.idTratamento\n" +
+                     "ORDER BY t.data DESC";
+
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, crm);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Tratamento tratamentoAux = new Tratamento(rs.getInt("idTratamento"),rs.getFloat("preco"),rs.getString("descricao"), rs.getString("data"), rs.getString("Paciente_cpf"));
+                tratamentos.add(tratamentoAux);
+            }
+            sucesso = true;
+        } catch (SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        }
+        return tratamentos;
+    }
 }

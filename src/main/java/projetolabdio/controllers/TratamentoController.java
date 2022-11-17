@@ -11,6 +11,8 @@ import projetolabdio.models.Tratamento;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import projetolabdio.controllers.DAO.Medico_has_TratamentoDAO;
+import projetolabdio.models.Medico_has_Tratamento;
 
 /**
  * Controller for Tratamento actions in TelaTratamento
@@ -50,14 +52,15 @@ public class TratamentoController {
     }
     
     /**
-     * Use the database (DAO Controllers) and register new Tratamento and related Pagamento
+     * Use the database (DAO Controllers) and register new Tratamento, related Pagamento and Medico_has_Tratamento
      * @param id Primary key of Tratamento and Foreign Key of Pagamento
      * @param cpf Value of Tratamento
      * @param preco Value of Tratamento
      * @param descricao Value of Tratamento
-     * @param data Value of Pagamento
+     * @param data Value of Tratamento
      * @param parcelas Value of Pagamento
      * @param forma Value of Pagamento
+     * @param data2 Value of Pagamento
      * @return TRUE for successful login and FALSE for unsuccessful register
      */
     public boolean createTratamento(int id, String cpf, float preco, String descricao, String data, int parcelas, String forma, String data2){
@@ -80,14 +83,17 @@ public class TratamentoController {
                     PagamentoDAO pag = new PagamentoDAO();
                     Pagamento pagamento = new Pagamento(parcelas, forma, data2, false, id);
                     sucess = pag.insertPagamento(pagamento);
-                    return sucess;
+                    
+                    if(sucess){
+                        Medico_has_TratamentoDAO medhtrat = new Medico_has_TratamentoDAO();
+                        Medico_has_Tratamento mht = new Medico_has_Tratamento(Logged.getCrm(),id);
+                        sucess = medhtrat.insertMedico_has_Tratamento(mht);
+                    }
                 }
         }
         else
             JOptionPane.showMessageDialog(null, "Insira todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
         
-        
         return sucess;
-        
     }
 }

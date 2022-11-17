@@ -10,38 +10,64 @@ import projetolabdio.controllers.Logged;
 import projetolabdio.views.TelaPacienteC;
 import projetolabdio.models.Paciente;
 import projetolabdio.controllers.MedicoController;
+import projetolabdio.controllers.TratamentoController;
+import projetolabdio.models.Pagamento;
+import projetolabdio.models.Tratamento;
 import projetolabdio.views.user_auth.TelaLogin;
 
 /**
- * Main screen of user, list all related users
+ * Main screen of user, list all related Paciente, list all related Tratamento
  * @author Gabriel Siqueira
  * @since 01/11/22
- * @version 1.0
+ * @version 2.0
  */
 public class TelaMedico extends javax.swing.JFrame {
 
     // Attributes
     private ArrayList<String> cpf = new ArrayList<>(); // CPF List
+    private ArrayList<Integer> id = new ArrayList<>(); // Id List
 
     /**
      * Creates new form TelaMedico
      * Call the MedicoController and list all related users (Pacientes)
+     * Call the MedicoController and list all related Tratamento
      */
     public TelaMedico() {
         initComponents();
         
-        // Complete jList
-        MedicoController pac = new MedicoController();
+        // Complete PacientejList
+        MedicoController med = new MedicoController();
         DefaultListModel model = new DefaultListModel();
-        ArrayList<Paciente> pacientes = pac.getPacientesList(); // Select pacientes
+        ArrayList<Paciente> pacientes = med.getPacientesList(); // Select pacientes
         
         for(Paciente p : pacientes) // Set model jList
             model.addElement(p.getNome());
         for(Paciente p : pacientes) // Set CPF list
                cpf.add(p.getCpf());
 
-        // Set jList
+        // Set PacientejList
         Pacientes_jList.setModel(model);
+        
+        
+        // Search and complete Tratamento and Pagamento jList
+        DefaultListModel model2 = new DefaultListModel();
+        TratamentoController trat = new TratamentoController();
+        ArrayList<Tratamento> tratamentos = med.selectTratamentosMedico(); // Select tratamentos
+        ArrayList<Pagamento> pagamentos = trat.selectTratamentoPagamento(tratamentos); // Select pagamentos
+        
+        // Set model
+        for(int i=0; i<tratamentos.size(); i++) // Set model jList
+            if(pagamentos.get(i).getPago())
+                model2.addElement(tratamentos.get(i).getDescricao()+" - Pagamento OK");
+            else
+                model2.addElement(tratamentos.get(i).getDescricao()+" - Pagamento Pendente");
+        
+        for(Tratamento t : tratamentos) // Set CPF list
+               id.add(t.getId());
+
+        
+        // Set TratamentojList
+        Tratamentos_jList.setModel(model2);
     }
 
     /**
@@ -59,6 +85,9 @@ public class TelaMedico extends javax.swing.JFrame {
         List_lbl = new javax.swing.JLabel();
         Pac_Create_btn = new javax.swing.JButton();
         Logout_btn1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tratamentos_jList = new javax.swing.JList<>();
+        List_lbl1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela Principal");
@@ -98,6 +127,17 @@ public class TelaMedico extends javax.swing.JFrame {
             }
         });
 
+        Tratamentos_jList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tratamentos_jListMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(Tratamentos_jList);
+
+        List_lbl1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
+        List_lbl1.setForeground(new java.awt.Color(255, 255, 255));
+        List_lbl1.setText("Lista de Tratamentos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -105,42 +145,52 @@ public class TelaMedico extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(344, 344, 344)
-                        .addComponent(List_lbl))
+                        .addContainerGap()
+                        .addComponent(Logout_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(List_lbl)
+                        .addGap(146, 146, 146)
+                        .addComponent(List_lbl1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(292, 292, 292)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                            .addComponent(Pac_Create_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(311, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(Logout_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(722, Short.MAX_VALUE)))
+                        .addGap(120, 120, 120)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(70, 70, 70)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(287, 287, 287)
+                        .addComponent(Pac_Create_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addComponent(List_lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(List_lbl)
+                            .addComponent(List_lbl1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Logout_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Pac_Create_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addComponent(Logout_btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(545, Short.MAX_VALUE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,26 +199,6 @@ public class TelaMedico extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * Capture double clicks on Pacientes_jList
-     * Call the MedicoController and redirect to the individual Paciente screen
-     */
-    private void Pacientes_jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Pacientes_jListMouseClicked
-        // DoubleClick in elements
-        if (evt.getClickCount() == 2) {
-            int index = Pacientes_jList.locationToIndex(evt.getPoint());
-            
-            // Select paciente using cpf
-            MedicoController pac = new MedicoController();
-            Paciente p = pac.getPaciente(cpf.get(index));
-            
-            // Pass to TelaPacienteRead
-            TelaPacienteR read = new TelaPacienteR(p);
-            this.dispose();
-            read.setVisible(true);
-        }
-    }//GEN-LAST:event_Pacientes_jListMouseClicked
 
     /**
      * Redirect to the form for create new Paciente
@@ -190,6 +220,50 @@ public class TelaMedico extends javax.swing.JFrame {
         this.dispose();
         login.setVisible(true);
     }//GEN-LAST:event_Logout_btn1ActionPerformed
+
+    /**
+     * Capture double clicks on Pacientes_jList
+     * Call the MedicoController and redirect to the individual Paciente screen
+     */
+    private void Pacientes_jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Pacientes_jListMouseClicked
+        // DoubleClick in elements
+        if (evt.getClickCount() == 2) {
+            int index = Pacientes_jList.locationToIndex(evt.getPoint());
+
+            // Select paciente using cpf
+            MedicoController pac = new MedicoController();
+            Paciente p = pac.getPaciente(cpf.get(index));
+
+            // Pass to TelaPacienteRead
+            TelaPacienteR read = new TelaPacienteR(p);
+            this.dispose();
+            read.setVisible(true);
+        }
+    }//GEN-LAST:event_Pacientes_jListMouseClicked
+
+    /**
+     * Capture double clicks on Tratamentos_jList
+     * Call the MedicoController and redirect to the individual TratamentoRead screen
+     */
+    private void Tratamentos_jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tratamentos_jListMouseClicked
+        // DoubleClick in elements
+        /*if (evt.getClickCount() == 2) {
+            int index = Tratamentos_jList.locationToIndex(evt.getPoint());
+
+            // Select Tratamento using id
+            TratamentoController trat = new TratamentoController();
+            Tratamento t = trat.getTratamento(id.get(index));
+            
+            // Select Pagameto
+            PagamentoController pag = new PagamentoController();
+            Pagamento p = pag.getPagamento(t.getId());
+            
+            // Pass to TelaPacienteRead
+            TelaPacienteR read = new TelaPacienteR(p);
+            this.dispose();
+            read.setVisible(true);
+        }*/
+    }//GEN-LAST:event_Tratamentos_jListMouseClicked
 
     /**
      * @param args the command line arguments
@@ -228,10 +302,13 @@ public class TelaMedico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel List_lbl;
+    private javax.swing.JLabel List_lbl1;
     private javax.swing.JButton Logout_btn1;
     private javax.swing.JButton Pac_Create_btn;
     private javax.swing.JList<String> Pacientes_jList;
+    private javax.swing.JList<String> Tratamentos_jList;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
