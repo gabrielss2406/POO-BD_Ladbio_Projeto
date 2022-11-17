@@ -13,7 +13,7 @@ import projetolabdio.models.Tratamento;
 
 /**
  * Controller for Paciente actions in TelaPacienteC and TelaPacienteR
- * @author Gabriel Siqueira
+ * @author Gabriel Siqueira, Francisco Guimarães
  * @since 05/11/2022
  * @version 2.0
  */
