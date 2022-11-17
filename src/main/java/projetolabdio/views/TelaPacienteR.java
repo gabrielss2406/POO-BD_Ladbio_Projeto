@@ -31,6 +31,7 @@ public class TelaPacienteR extends javax.swing.JFrame {
      * Creates new form TelaPaciente
      * And set labels with the Paciente obj data
      * And set jList for Tratamento for this Paciente
+     * @param p Object Paciente to be instantiated
      */
     public TelaPacienteR(Paciente p) {
         initComponents();
@@ -321,6 +322,9 @@ public class TelaPacienteR extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Pac_Delete_btnActionPerformed
 
+    /**
+     * Go to add new Tratamento for this user, TelaTratamentoC
+     */
     private void Trat_add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Trat_add_btnActionPerformed
         // Add new tratamento
         TelaTratamentoC tratamento = new TelaTratamentoC(Cpf_lbl.getText());

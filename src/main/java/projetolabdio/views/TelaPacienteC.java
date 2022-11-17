@@ -6,12 +6,13 @@ package projetolabdio.views;
 
 import java.awt.Color;
 
-import projetolabdio.views.user_auth.TelaLogin;
 import projetolabdio.views.user_auth.TelaRegistroMedico;
 
 /**
- *
- * @author aluno
+ * Screen for create new Paciente
+ * @author Gabriel Siqueira
+ * @since 14/11/2022
+ * @version 1.0
  */
 public class TelaPacienteC extends javax.swing.JFrame {
 
@@ -220,6 +221,10 @@ public class TelaPacienteC extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Placeholder function of UserTel_txtField
+     * Remove the placeholder when gain focus
+     */
     private void UserTel_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserTel_txtFieldFocusGained
         String user = UserTel_txtField.getText();
         if("".equals(user) || "Insira seu telefone".equals(user)){
@@ -228,6 +233,10 @@ public class TelaPacienteC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UserTel_txtFieldFocusGained
 
+    /**
+     * Placeholder function of UserTel_txtField
+     * Return the placeholder when lost focus
+     */
     private void UserTel_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserTel_txtFieldFocusLost
         String user = UserTel_txtField.getText();
         if("".equals(user) || "Insira seu telefone".equals(user)){
@@ -236,6 +245,10 @@ public class TelaPacienteC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UserTel_txtFieldFocusLost
 
+    /**
+     * Placeholder function of UserEnderc_txtField
+     * Remove the placeholder when gain focus
+     */
     private void UserEnderc_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserEnderc_txtFieldFocusGained
         String user = UserEnderc_txtField.getText();
         if("".equals(user) || "Insira seu endereco".equals(user)){
@@ -244,6 +257,10 @@ public class TelaPacienteC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UserEnderc_txtFieldFocusGained
 
+    /**
+     * Placeholder function of UserEnderc_txtField
+     * Return the placeholder when lost focus
+     */
     private void UserEnderc_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserEnderc_txtFieldFocusLost
         String user = UserEnderc_txtField.getText();
         if("".equals(user) || "Insira seu endereco".equals(user)){
@@ -252,6 +269,10 @@ public class TelaPacienteC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UserEnderc_txtFieldFocusLost
 
+    /**
+     * Placeholder function of UserCpf_txtField
+     * Remove the placeholder when gain focus
+     */
     private void UserCpf_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserCpf_txtFieldFocusGained
         String user = UserCpf_txtField.getText();
         if("".equals(user) || "Insira CPF (xxx.xxx.xxx-xx)".equals(user)){
@@ -260,6 +281,10 @@ public class TelaPacienteC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UserCpf_txtFieldFocusGained
 
+    /**
+     * Placeholder function of UserCpf_txtField
+     * Return the placeholder when lost focus
+     */
     private void UserCpf_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserCpf_txtFieldFocusLost
         String user = UserCpf_txtField.getText();
         if("".equals(user) || "Insira CPF (xxx.xxx.xxx-xx)".equals(user)){
@@ -268,6 +293,10 @@ public class TelaPacienteC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UserCpf_txtFieldFocusLost
 
+    /**
+     * Placeholder function of UserName_txtField
+     * Remove the placeholder when gain focus
+     */
     private void UserName_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserName_txtFieldFocusGained
         String user = UserName_txtField.getText();
         if("".equals(user) || "Insira seu nome".equals(user)){
@@ -276,6 +305,10 @@ public class TelaPacienteC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UserName_txtFieldFocusGained
 
+    /**
+     * Placeholder function of UserName_txtField
+     * Return the placeholder when lost focus
+     */
     private void UserName_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserName_txtFieldFocusLost
         String user = UserName_txtField.getText();
         if("".equals(user) || "Insira seu nome".equals(user)){
@@ -284,23 +317,40 @@ public class TelaPacienteC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UserName_txtFieldFocusLost
 
+    /**
+     * Use RegistroController for create new Paciente
+     */
     private void Cad_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cad_btnActionPerformed
         TelaRegistroMedico tela2 = new TelaRegistroMedico();
         this.dispose();
         tela2.setVisible(true);
     }//GEN-LAST:event_Cad_btnActionPerformed
 
+    /**
+     * Back to menu, TelaMedico
+     */
     private void Login_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_btnActionPerformed
-        TelaLogin login = new TelaLogin();
+        TelaMedico med = new TelaMedico();
         this.dispose();
-        login.setVisible(true);
+        med.setVisible(true);
     }//GEN-LAST:event_Login_btnActionPerformed
 
+    /**
+     * Placeholder function of PagParc_txtField
+     * Remove the placeholder when gain focus
+     */
     private void UserNasc_txtField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserNasc_txtField1FocusGained
-        UserNasc_txtField1.setText("");
-        UserNasc_txtField1.setForeground(Color.BLACK);
+        String user = UserName_txtField.getText();
+        if("".equals(user) || "Insira sua data de nascimento (dd/mm/yyyy)".equals(user)){
+            UserName_txtField.setForeground(Color.BLACK);
+            UserName_txtField.setText("");
+        }
     }//GEN-LAST:event_UserNasc_txtField1FocusGained
 
+    /**
+     * Placeholder function of UserNasc_txtField
+     * Return the placeholder when lost focus
+     */
     private void UserNasc_txtField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserNasc_txtField1FocusLost
         String user = UserNasc_txtField1.getText();
         if("".equals(user) || "Insira sua data de nascimento (dd/mm/yyyy)".equals(user)){

@@ -10,6 +10,7 @@ import projetolabdio.models.Pagamento;
 import projetolabdio.models.Tratamento;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  * Controller for Tratamento actions in TelaTratamento
@@ -48,19 +49,44 @@ public class TratamentoController {
         return pagamentos;
     }
     
-    public boolean createTratamento(int id, String cpf, float preco, String descricao, String data, int parcelas, String forma){
-        boolean sucess;
+    /**
+     * Use the database (DAO Controllers) and register new Tratamento and related Pagamento
+     * @param id Primary key of Tratamento and Foreign Key of Pagamento
+     * @param cpf Value of Tratamento
+     * @param preco Value of Tratamento
+     * @param descricao Value of Tratamento
+     * @param data Value of Pagamento
+     * @param parcelas Value of Pagamento
+     * @param forma Value of Pagamento
+     * @return TRUE for successful login and FALSE for unsuccessful register
+     */
+    public boolean createTratamento(int id, String cpf, float preco, String descricao, String data, int parcelas, String forma, String data2){
+        boolean sucess = false;
         
-        TratamentoDAO trat = new TratamentoDAO();
-        Tratamento tratamento = new Tratamento(id, preco, descricao, data, cpf);
-        
-        sucess = trat.insertTratamento(tratamento);
-        if(sucess){
-            PagamentoDAO pag = new PagamentoDAO();
-            Pagamento pagamento = new Pagamento(parcelas, forma, data, false, id);
-            sucess = pag.insertPagamento(pagamento);
-            return sucess;
+        if(!"Insira um id".equals(id) && !" ".equals(id)
+                && !"Insira a descrição".equals(cpf) && !" ".equals(cpf)
+                && !"Insira o preço".equals(preco) && !" ".equals(preco)
+                && !"Insira a data (dd/mm/yyyy)".equals(data) && !" ".equals(data)
+                && !"Insira a descrição".equals(descricao) && !" ".equals(descricao)
+                && !"Insira a quantidade de parcelas".equals(parcelas) && !" ".equals(parcelas)
+                && !"Insira a forma de pagamento".equals(forma) && !" ".equals(forma)
+                && !"Insira a data (dd/mm/yyyy)".equals(data2) && !" ".equals(data2)){
+            
+                TratamentoDAO trat = new TratamentoDAO();
+                Tratamento tratamento = new Tratamento(id, preco, descricao, data, cpf);
+
+                sucess = trat.insertTratamento(tratamento);
+                if(sucess){
+                    PagamentoDAO pag = new PagamentoDAO();
+                    Pagamento pagamento = new Pagamento(parcelas, forma, data2, false, id);
+                    sucess = pag.insertPagamento(pagamento);
+                    return sucess;
+                }
         }
+        else
+            JOptionPane.showMessageDialog(null, "Insira todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+        
+        
         return sucess;
         
     }

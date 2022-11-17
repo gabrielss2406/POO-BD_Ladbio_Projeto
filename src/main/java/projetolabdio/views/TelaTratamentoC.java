@@ -8,14 +8,16 @@ import java.awt.Color;
 import projetolabdio.controllers.TratamentoController;
 
 /**
- *
- * @author gabri
+ * Screen to create new Tratamento
+ * @author Gabriel Siqueira
+ * @since 13/11/22
+ * @version 1.0
  */
 public class TelaTratamentoC extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaTratamentoC
-     * @param cpf
+     * @param cpf Cpf of related Paciente
      */
     public TelaTratamentoC(String cpf) {
         initComponents();
@@ -93,7 +95,7 @@ public class TelaTratamentoC extends javax.swing.JFrame {
 
         TratData_txtField.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         TratData_txtField.setForeground(java.awt.Color.gray);
-        TratData_txtField.setText("Insira a data (yyyy-mm-dd)");
+        TratData_txtField.setText("Insira a data (dd/mm/yyyy)");
         TratData_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 TratData_txtFieldFocusGained(evt);
@@ -173,7 +175,7 @@ public class TelaTratamentoC extends javax.swing.JFrame {
 
         PagData_txtField.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         PagData_txtField.setForeground(java.awt.Color.gray);
-        PagData_txtField.setText("Insira a data (yyyy-mm-dd)");
+        PagData_txtField.setText("Insira a data (dd/mm/yyyy)");
         PagData_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 PagData_txtFieldFocusGained(evt);
@@ -307,6 +309,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Placeholder function of TratDesc_txtField
+     * Remove the placeholder when gain focus
+     */
     private void TratDesc_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TratDesc_txtFieldFocusGained
         String user = TratDesc_txtField.getText();
         if("".equals(user) || "Insira a descrição".equals(user)){
@@ -315,6 +321,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TratDesc_txtFieldFocusGained
 
+    /**
+     * Placeholder function of TratDesc_txtField
+     * Return the placeholder when lost focus
+     */
     private void TratDesc_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TratDesc_txtFieldFocusLost
         String user = TratDesc_txtField.getText();
         if("".equals(user) || "Insira a descrição".equals(user)){
@@ -322,11 +332,15 @@ public class TelaTratamentoC extends javax.swing.JFrame {
             TratDesc_txtField.setText("Insira a descrição");
         }
     }//GEN-LAST:event_TratDesc_txtFieldFocusLost
-
+    
+    /**
+     * Use the TratamentoController for create the Tratamento
+     * Redirect to TelaMedico if sucess
+     */
     private void Cad_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cad_btnActionPerformed
         // Create new Tratamento
         TratamentoController trat = new TratamentoController();
-        boolean sucess = trat.createTratamento(Integer.parseInt(Id_txtField.getText()), Cpf_txtField.getText(), Float.parseFloat(TratPrec_txtField.getText()), TratDesc_txtField.getText(), TratData_txtField.getText(), Integer.parseInt(PagParc_txtField.getText()), PagForma_txtField.getText());
+        boolean sucess = trat.createTratamento(Integer.parseInt(Id_txtField.getText()), Cpf_txtField.getText(), Float.parseFloat(TratPrec_txtField.getText()), TratDesc_txtField.getText(), TratData_txtField.getText(), Integer.parseInt(PagParc_txtField.getText()), PagForma_txtField.getText(), PagData_txtField.getText());
         
         if(sucess){ // Navegate if register sucess
             TelaMedico medico = new TelaMedico();
@@ -335,22 +349,34 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Cad_btnActionPerformed
 
+    /**
+     * Placeholder function of TratData_txtField
+     * Remove the placeholder when gain focus
+     */
     private void TratData_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TratData_txtFieldFocusGained
         String user = TratData_txtField.getText();
-        if("".equals(user) || "Insira a data (yyyy-mm-dd)".equals(user)){
+        if("".equals(user) || "Insira a data (dd/mm/yyyy)".equals(user)){
             TratData_txtField.setForeground(Color.BLACK);
             TratData_txtField.setText("");
         }
     }//GEN-LAST:event_TratData_txtFieldFocusGained
 
+    /**
+     * Placeholder function of TratData_txtField
+     * Return the placeholder when lost focus
+     */
     private void TratData_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TratData_txtFieldFocusLost
         String user = TratData_txtField.getText();
-        if("".equals(user) || "Insira a data (yyyy-mm-dd)".equals(user)){
+        if("".equals(user) || "Insira a data (dd/mm/yyyy)".equals(user)){
             TratData_txtField.setForeground(Color.GRAY);
-            TratData_txtField.setText("Insira a data (yyyy-mm-dd)");
+            TratData_txtField.setText("Insira a data (dd/mm/yyyy)");
         }
     }//GEN-LAST:event_TratData_txtFieldFocusLost
 
+    /**
+     * Placeholder function of TratPrec_txtField
+     * Remove the placeholder when gain focus
+     */
     private void TratPrec_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TratPrec_txtFieldFocusGained
         String user = TratPrec_txtField.getText();
         if("".equals(user) || "Insira o preço".equals(user)){
@@ -359,6 +385,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TratPrec_txtFieldFocusGained
 
+    /**
+     * Placeholder function of TratPrec_txtField
+     * Return the placeholder when lost focus
+     */
     private void TratPrec_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TratPrec_txtFieldFocusLost
         String user = TratPrec_txtField.getText();
         if("".equals(user) || "Insira o preço".equals(user)){
@@ -367,6 +397,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TratPrec_txtFieldFocusLost
 
+    /**
+     * Placeholder function of Cpf_txtField
+     * Remove the placeholder when gain focus
+     */
     private void Cpf_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Cpf_txtFieldFocusGained
         String user = Cpf_txtField.getText();
         if("".equals(user) || "Insira o CPF do paciente".equals(user)){
@@ -375,6 +409,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Cpf_txtFieldFocusGained
 
+    /**
+     * Placeholder function of Cpf_txtField
+     * Return the placeholder when lost focus
+     */
     private void Cpf_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Cpf_txtFieldFocusLost
         String user = Cpf_txtField.getText();
         if("".equals(user) || "Insira o CPF do paciente".equals(user)){
@@ -383,6 +421,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Cpf_txtFieldFocusLost
 
+    /**
+     * Placeholder function of PagParc_txtField
+     * Remove the placeholder when gain focus
+     */
     private void PagParc_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PagParc_txtFieldFocusGained
         String user = PagParc_txtField.getText();
         if("".equals(user) || "Insira a quantidade de parcelas".equals(user)){
@@ -391,6 +433,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PagParc_txtFieldFocusGained
 
+    /**
+     * Placeholder function of PagParc_txtField
+     * Return the placeholder when lost focus
+     */
     private void PagParc_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PagParc_txtFieldFocusLost
         String user = PagParc_txtField.getText();
         if("".equals(user) || "Insira a quantidade de parcelas".equals(user)){
@@ -399,6 +445,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PagParc_txtFieldFocusLost
 
+    /**
+     * Placeholder function of PagForma_txtField
+     * Remove the placeholder when gain focus
+     */
     private void PagForma_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PagForma_txtFieldFocusGained
         String user = PagForma_txtField.getText();
         if("".equals(user) || "Insira a forma de pagamento".equals(user)){
@@ -407,6 +457,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PagForma_txtFieldFocusGained
 
+    /**
+     * Placeholder function of PagForma_txtField
+     * Return the placeholder when lost focus
+     */
     private void PagForma_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PagForma_txtFieldFocusLost
         String user = PagForma_txtField.getText();
         if("".equals(user) || "Insira a forma de pagamento".equals(user)){
@@ -415,22 +469,33 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PagForma_txtFieldFocusLost
 
+    /**
+     * Placeholder function of PagData_txtField
+     * Remove the placeholder when gain focus
+     */
     private void PagData_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PagData_txtFieldFocusGained
         String user = PagData_txtField.getText();
-        if("".equals(user) || "Insira a data (yyyy-mm-dd)".equals(user)){
+        if("".equals(user) || "Insira a data (dd/mm/yyyy)".equals(user)){
             PagData_txtField.setForeground(Color.BLACK);
             PagData_txtField.setText("");
         }
     }//GEN-LAST:event_PagData_txtFieldFocusGained
 
+    /**
+     * Placeholder function of PagData_txtField
+     * Return the placeholder when lost focus
+     */
     private void PagData_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PagData_txtFieldFocusLost
         String user = PagData_txtField.getText();
-        if("".equals(user) || "Insira a data (yyyy-mm-dd)".equals(user)){
+        if("".equals(user) || "Insira a data (dd/mm/yyyy)".equals(user)){
             PagData_txtField.setForeground(Color.GRAY);
-            PagData_txtField.setText("Insira a data (yyyy-mm-dd)");
+            PagData_txtField.setText("IInsira a data (dd/mm/yyyy)");
         }
     }//GEN-LAST:event_PagData_txtFieldFocusLost
 
+    /**
+     * Back to menu, TelaMedico
+     */
     private void Back_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_btnActionPerformed
         // Back to TelaMedico
         TelaMedico medico = new TelaMedico();
@@ -438,6 +503,9 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         medico.setVisible(true);
     }//GEN-LAST:event_Back_btnActionPerformed
 
+    /**
+     * Make TratPrec_txtField accept only digits
+     */
     private void TratPrec_txtFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TratPrec_txtFieldKeyTyped
         // Accept only numbers
         String caracteres="0987654321.";
@@ -446,6 +514,9 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TratPrec_txtFieldKeyTyped
 
+    /**
+     * Make PagParc_txtField accept only digits
+     */
     private void PagParc_txtFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PagParc_txtFieldKeyTyped
         // Accept only numbers
         String caracteres="0987654321";
@@ -454,6 +525,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PagParc_txtFieldKeyTyped
 
+    /**
+     * Placeholder function of Id_txtField
+     * Remove the placeholder when gain focus
+     */
     private void Id_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Id_txtFieldFocusGained
         String user = Id_txtField.getText();
         if("".equals(user) || "Insira um id".equals(user)){
@@ -462,6 +537,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Id_txtFieldFocusGained
 
+    /**
+     * Placeholder function of Id_txtField
+     * Return the placeholder when lost focus
+     */
     private void Id_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Id_txtFieldFocusLost
         String user = Id_txtField.getText();
         if("".equals(user) || "Insira um id".equals(user)){
@@ -469,7 +548,10 @@ public class TelaTratamentoC extends javax.swing.JFrame {
             Id_txtField.setText("Insira um id");
         }
     }//GEN-LAST:event_Id_txtFieldFocusLost
-
+    
+    /**
+     * Make Id_txtField accept only digits
+     */
     private void Id_txtFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Id_txtFieldKeyTyped
         // Accept only numbers
         String caracteres="0987654321";

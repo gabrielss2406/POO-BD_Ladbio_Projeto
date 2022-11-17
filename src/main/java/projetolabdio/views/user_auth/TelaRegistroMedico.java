@@ -5,7 +5,6 @@
 package projetolabdio.views.user_auth;
 
 import projetolabdio.controllers.RegistroController;
-import projetolabdio.views.TelaMedico;
 
 import java.awt.Color;
 
@@ -87,11 +86,6 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 UserCrm_txtFieldFocusLost(evt);
-            }
-        });
-        UserCrm_txtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UserCrm_txtFieldActionPerformed(evt);
             }
         });
 
@@ -358,10 +352,10 @@ public class TelaRegistroMedico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_UserPass_passFieldFocusLost
 
-    private void UserCrm_txtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserCrm_txtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UserCrm_txtFieldActionPerformed
-
+    /**
+     * Use the RegistroController for create the Medico
+     * Redirect to TelaLogin if sucess
+     */
     private void Cad_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cad_btnActionPerformed
         //Create user
         String crm = UserCrm_txtField.getText();

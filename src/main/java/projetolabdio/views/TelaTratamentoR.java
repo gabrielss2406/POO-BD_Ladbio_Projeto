@@ -22,6 +22,8 @@ public class TelaTratamentoR extends javax.swing.JFrame {
      * Creates new form TelaTratamento
      * And set labels with the Tratamento obj data
      * And set other labels with the Pagamento obj data
+     * @param t Object Tratamento to be instantiated
+     * @param p Object Pagamento of this Tratamento
      */
     public TelaTratamentoR(Tratamento t, Pagamento p) {
         initComponents();

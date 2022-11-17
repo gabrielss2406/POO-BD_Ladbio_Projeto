@@ -53,4 +53,13 @@ public class RegistroController {
         }
         return false;
     }
+    
+    
+    public boolean registroPaciente(){
+        boolean sucess = false;
+        
+        
+        
+        return sucess;
+    }
 }
