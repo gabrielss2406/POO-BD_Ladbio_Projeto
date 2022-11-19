@@ -13,9 +13,9 @@ import projetolabdio.models.Tratamento;
 
 /**
  * Controller for Paciente actions in TelaPacienteC and TelaPacienteR
- * @author Gabriel Siqueira
+ * @author Gabriel Siqueira, Francisco Guimarães
  * @since 05/11/2022
- * @version 1.0
+ * @version 2.0
  */
 public class PacienteController {
     /**
@@ -45,5 +45,35 @@ public class PacienteController {
         tratamentos = trat.selectTratamento(cpf);
 
         return tratamentos;
+    }
+
+    /**
+     * Connect whit PacienteDAO and request for update the Paciente's phone
+     * @param cpf Primaty key of Paciente table
+     * @param telefone Attribute telefone
+     * @return TRUE for successful and FALSE for unsuccessful Update
+     */
+    public boolean updatePacienteTelefone(int cpf, String telefone){
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        boolean req;
+
+        req = pacienteDAO.updatePacienteTelefone(cpf, telefone);
+
+        return req;
+    }
+
+    /**
+     * Connect whit PacienteDAO and request for update the Paciente's address
+     * @param cpf Primaty key of Paciente table
+     * @param endereco Attribute telefone
+     * @return TRUE for successful and FALSE for unsuccessful Update
+     */
+    public boolean updatePacienteEndereco(int cpf, String endereco){
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        boolean req;
+
+        req = pacienteDAO.updatePacienteEndereco(cpf, endereco);
+
+        return req;
     }
 }
