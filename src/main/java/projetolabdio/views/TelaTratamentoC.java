@@ -53,6 +53,8 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         Back_btn = new javax.swing.JButton();
         Id_txtField = new javax.swing.JTextField();
         TratPrec_lbl1 = new javax.swing.JLabel();
+        TratPrec_lbl2 = new javax.swing.JLabel();
+        CRM_txtField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -214,6 +216,26 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         TratPrec_lbl1.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         TratPrec_lbl1.setText("Id");
 
+        TratPrec_lbl2.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
+        TratPrec_lbl2.setText("Crm");
+
+        CRM_txtField.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
+        CRM_txtField.setForeground(java.awt.Color.gray);
+        CRM_txtField.setText("Insira um CRM");
+        CRM_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CRM_txtFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                CRM_txtFieldFocusLost(evt);
+            }
+        });
+        CRM_txtField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CRM_txtFieldKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -237,6 +259,8 @@ public class TelaTratamentoC extends javax.swing.JFrame {
                         .addContainerGap(261, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TratPrec_lbl2)
+                            .addComponent(CRM_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TratPrec_lbl1)
                             .addComponent(Id_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(PagData_lbl)
@@ -290,9 +314,13 @@ public class TelaTratamentoC extends javax.swing.JFrame {
                 .addComponent(PagData_lbl)
                 .addGap(1, 1, 1)
                 .addComponent(PagData_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(TratPrec_lbl2)
+                .addGap(1, 1, 1)
+                .addComponent(CRM_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Cad_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -340,7 +368,7 @@ public class TelaTratamentoC extends javax.swing.JFrame {
     private void Cad_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cad_btnActionPerformed
         // Create new Tratamento
         TratamentoController trat = new TratamentoController();
-        boolean sucess = trat.createTratamento(Integer.parseInt(Id_txtField.getText()), Cpf_txtField.getText(), Float.parseFloat(TratPrec_txtField.getText()), TratDesc_txtField.getText(), TratData_txtField.getText(), Integer.parseInt(PagParc_txtField.getText()), PagForma_txtField.getText(), PagData_txtField.getText());
+        boolean sucess = trat.createTratamento(Integer.parseInt(Id_txtField.getText()), Cpf_txtField.getText(), Float.parseFloat(TratPrec_txtField.getText()), TratDesc_txtField.getText(), TratData_txtField.getText(), Integer.parseInt(PagParc_txtField.getText()), PagForma_txtField.getText(), PagData_txtField.getText(), Integer.parseInt(CRM_txtField.getText()));
         
         if(sucess){ // Navegate if register sucess
             TelaMedico medico = new TelaMedico();
@@ -489,7 +517,7 @@ public class TelaTratamentoC extends javax.swing.JFrame {
         String user = PagData_txtField.getText();
         if("".equals(user) || "Insira a data (dd/mm/yyyy)".equals(user)){
             PagData_txtField.setForeground(Color.GRAY);
-            PagData_txtField.setText("IInsira a data (dd/mm/yyyy)");
+            PagData_txtField.setText("Insira a data (dd/mm/yyyy)");
         }
     }//GEN-LAST:event_PagData_txtFieldFocusLost
 
@@ -508,7 +536,7 @@ public class TelaTratamentoC extends javax.swing.JFrame {
      */
     private void TratPrec_txtFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TratPrec_txtFieldKeyTyped
         // Accept only numbers
-        String caracteres="0987654321.";
+        String caracteres="0987654321.,";
             if(!caracteres.contains(evt.getKeyChar()+"")){
             evt.consume();
         }
@@ -561,6 +589,41 @@ public class TelaTratamentoC extends javax.swing.JFrame {
     }//GEN-LAST:event_Id_txtFieldKeyTyped
 
     /**
+     * Placeholder function of CRM_txtField
+     * Remove the placeholder when gain focus
+     */
+    private void CRM_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CRM_txtFieldFocusGained
+        String user = CRM_txtField.getText();
+        if("".equals(user) || "Insira um CRM".equals(user)){
+            CRM_txtField.setForeground(Color.BLACK);
+            CRM_txtField.setText("");
+        }
+    }//GEN-LAST:event_CRM_txtFieldFocusGained
+
+    /**
+     * Placeholder function of CRM_txtField
+     * Return the placeholder when lost focus
+     */
+    private void CRM_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CRM_txtFieldFocusLost
+        String user = CRM_txtField.getText();
+        if("".equals(user) || "Insira um CRM".equals(user)){
+            CRM_txtField.setForeground(Color.GRAY);
+            CRM_txtField.setText("Insira um CRM");
+        }
+    }//GEN-LAST:event_CRM_txtFieldFocusLost
+
+    /**
+     * Make CRM_txtField accept only digits
+     */
+    private void CRM_txtFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CRM_txtFieldKeyTyped
+        // Accept only numbers
+        String caracteres="0987654321";
+            if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_CRM_txtFieldKeyTyped
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -598,6 +661,7 @@ public class TelaTratamentoC extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back_btn;
+    private javax.swing.JTextField CRM_txtField;
     private javax.swing.JButton Cad_btn;
     private javax.swing.JLabel Cpf_lbl;
     private javax.swing.JTextField Cpf_txtField;
@@ -614,6 +678,7 @@ public class TelaTratamentoC extends javax.swing.JFrame {
     private javax.swing.JTextField TratDesc_txtField;
     private javax.swing.JLabel TratPrec_lbl;
     private javax.swing.JLabel TratPrec_lbl1;
+    private javax.swing.JLabel TratPrec_lbl2;
     private javax.swing.JTextField TratPrec_txtField;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

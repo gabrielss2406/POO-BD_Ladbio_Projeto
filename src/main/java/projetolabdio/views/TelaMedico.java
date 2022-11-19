@@ -10,6 +10,7 @@ import projetolabdio.controllers.Logged;
 import projetolabdio.views.TelaPacienteC;
 import projetolabdio.models.Paciente;
 import projetolabdio.controllers.MedicoController;
+import projetolabdio.controllers.PagamentoController;
 import projetolabdio.controllers.TratamentoController;
 import projetolabdio.models.Pagamento;
 import projetolabdio.models.Tratamento;
@@ -18,7 +19,7 @@ import projetolabdio.views.user_auth.TelaLogin;
 /**
  * Main screen of user, list all related Paciente, list all related Tratamento
  * @author Gabriel Siqueira
- * @since 01/11/22
+ * @since 18/11/22
  * @version 2.0
  */
 public class TelaMedico extends javax.swing.JFrame {
@@ -187,10 +188,7 @@ public class TelaMedico extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +245,8 @@ public class TelaMedico extends javax.swing.JFrame {
      */
     private void Tratamentos_jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tratamentos_jListMouseClicked
         // DoubleClick in elements
-        /*if (evt.getClickCount() == 2) {
+        // DoubleClick in elements
+        if (evt.getClickCount() == 2) {
             int index = Tratamentos_jList.locationToIndex(evt.getPoint());
 
             // Select Tratamento using id
@@ -258,11 +257,11 @@ public class TelaMedico extends javax.swing.JFrame {
             PagamentoController pag = new PagamentoController();
             Pagamento p = pag.getPagamento(t.getId());
             
-            // Pass to TelaPacienteRead
-            TelaPacienteR read = new TelaPacienteR(p);
+            // Isso aqui tem q ir pro controllers
+            TelaTratamentoR tra = new TelaTratamentoR(t,p);
             this.dispose();
-            read.setVisible(true);
-        }*/
+            tra.setVisible(true);
+        }
     }//GEN-LAST:event_Tratamentos_jListMouseClicked
 
     /**

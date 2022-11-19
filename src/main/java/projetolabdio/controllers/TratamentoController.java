@@ -61,9 +61,10 @@ public class TratamentoController {
      * @param parcelas Value of Pagamento
      * @param forma Value of Pagamento
      * @param data2 Value of Pagamento
+     * @param crm Primary key of related Medico
      * @return TRUE for successful login and FALSE for unsuccessful register
      */
-    public boolean createTratamento(int id, String cpf, float preco, String descricao, String data, int parcelas, String forma, String data2){
+    public boolean createTratamento(int id, String cpf, float preco, String descricao, String data, int parcelas, String forma, String data2, int crm){
         boolean sucess = false;
         
         if(!"Insira um id".equals(id) && !" ".equals(id)
@@ -86,7 +87,7 @@ public class TratamentoController {
                     
                     if(sucess){
                         Medico_has_TratamentoDAO medhtrat = new Medico_has_TratamentoDAO();
-                        Medico_has_Tratamento mht = new Medico_has_Tratamento(Logged.getCrm(),id);
+                        Medico_has_Tratamento mht = new Medico_has_Tratamento(crm,id);
                         sucess = medhtrat.insertMedico_has_Tratamento(mht);
                     }
                 }
