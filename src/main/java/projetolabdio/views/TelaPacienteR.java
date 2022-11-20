@@ -181,8 +181,14 @@ public class TelaPacienteR extends javax.swing.JFrame {
             }
         });
 
+        Pac_Update_btn.setBackground(new java.awt.Color(153, 204, 255));
         Pac_Update_btn.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         Pac_Update_btn.setText("Editar");
+        Pac_Update_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Pac_Update_btnActionPerformed(evt);
+            }
+        });
 
         Back_btn.setBackground(new java.awt.Color(204, 204, 255));
         Back_btn.setFont(new java.awt.Font("Bahnschrift", 0, 12)); // NOI18N
@@ -230,13 +236,17 @@ public class TelaPacienteR extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Back_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(Dados_lbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Pac_Update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(Dados_lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Pac_Update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Trat_lbl)
@@ -331,6 +341,16 @@ public class TelaPacienteR extends javax.swing.JFrame {
         this.dispose();
         tratamento.setVisible(true);
     }//GEN-LAST:event_Trat_add_btnActionPerformed
+
+    /**
+     * Go to update this Paciente, TelaPacienteU
+     */
+    private void Pac_Update_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pac_Update_btnActionPerformed
+        // Go to TelaPacienteU
+        TelaPacienteU upt = new TelaPacienteU(Cpf_lbl.getText());
+        this.dispose();
+        upt.setVisible(true);
+    }//GEN-LAST:event_Pac_Update_btnActionPerformed
 
     /**
      * @param args the command line arguments

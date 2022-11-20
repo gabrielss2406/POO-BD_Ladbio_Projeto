@@ -53,10 +53,10 @@ public class PacienteController {
      * @param telefone Attribute telefone
      * @return TRUE for successful and FALSE for unsuccessful Update
      */
-    public boolean updatePacienteTelefone(int cpf, String telefone){
+    public boolean updatePacienteTelefone(String cpf, String telefone){
         PacienteDAO pacienteDAO = new PacienteDAO();
         boolean req;
-
+        
         req = pacienteDAO.updatePacienteTelefone(cpf, telefone);
 
         return req;
@@ -68,7 +68,7 @@ public class PacienteController {
      * @param endereco Attribute telefone
      * @return TRUE for successful and FALSE for unsuccessful Update
      */
-    public boolean updatePacienteEndereco(int cpf, String endereco){
+    public boolean updatePacienteEndereco(String cpf, String endereco){
         PacienteDAO pacienteDAO = new PacienteDAO();
         boolean req;
 

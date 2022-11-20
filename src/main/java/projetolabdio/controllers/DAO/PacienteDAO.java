@@ -118,13 +118,13 @@ public class PacienteDAO extends ConnectionDAO{
      * @param telefone Attribute that will be updated
      * @return boolean variable (1 - success) (2 - fail)
      */
-    public boolean updatePacienteTelefone(int CPF, String telefone) { //UPDATE
+    public boolean updatePacienteTelefone(String CPF, String telefone) { //UPDATE
         connectToDB();
-        String sql = "UPDATE Paciente SET telefone=? where id=?";
+        String sql = "UPDATE Paciente SET telefone=? where cpf=?";
         try {
             pst = con.prepareStatement(sql);
             pst.setString(1, telefone);
-            pst.setInt(3,CPF);
+            pst.setString(2,CPF);
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {
@@ -147,13 +147,13 @@ public class PacienteDAO extends ConnectionDAO{
      * @param endereco Attribute that will be updated
      * @return boolean variable (1 - success) (2 - fail)
      */
-    public boolean updatePacienteEndereco(int CPF, String endereco) { //UPDATE
+    public boolean updatePacienteEndereco(String CPF, String endereco) { //UPDATE
         connectToDB();
-        String sql = "UPDATE Paciente SET endereco=? where id=?";
+        String sql = "UPDATE Paciente SET endereco=? where cpf=?";
         try {
             pst = con.prepareStatement(sql);
             pst.setString(1, endereco);
-            pst.setInt(2,CPF);
+            pst.setString(2,CPF);
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {
