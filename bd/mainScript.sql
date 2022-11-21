@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Paciente` (
 CREATE TABLE IF NOT EXISTS `mydb`.`Tratamento` (
   `idTratamento` INT AUTO_INCREMENT NOT NULL,
   `descricao` VARCHAR(45) NOT NULL,
-  `data` DATE NOT NULL,
-  `preco` FLOAT NOT NULL,
+  `data` VARCHAR(45) NOT NULL,
+  `preco` DECIMAL(10,2) NOT NULL,
   `Paciente_cpf` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idTratamento`),
   CONSTRAINT `fk_Tratamento_Paciente1`
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Pagamento` (
   `idPagamento` INT AUTO_INCREMENT NOT NULL,
   `parcelas` INT NOT NULL,
   `forma` VARCHAR(45) NOT NULL,
-  `data` DATE NOT NULL,
+  `data` VARCHAR(45) NOT NULL,
   `pago` TINYINT NOT NULL,
   `Tratamento_idTratamento` INT NOT NULL,
   PRIMARY KEY (`idPagamento`, `Tratamento_idTratamento`),
