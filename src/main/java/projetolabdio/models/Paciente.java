@@ -14,7 +14,6 @@ public class Paciente {
     private String telefone;
     private String endereco;
     private int Medico_crm;
-    //private Date data_nasc;
 
     /**
      * Constructor method from Paciente
@@ -25,14 +24,13 @@ public class Paciente {
      * @param endereco Attribute phone of Paciente
      * @param medico_crm Foreing key for Medico
      */
-    public Paciente(int idade, String cpf, String nome, String telefone, String endereco, int medico_crm/*, Date data_nasc*/) { // CONSTRUCTOR
+    public Paciente(String cpf, String nome, String endereco, String telefone, int idade, int medico_crm) { // CONSTRUCTOR
         this.idade = idade;
         this.cpf = cpf;
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
         this.Medico_crm = medico_crm;
-        /*this.data_nasc = data_nasc;*/
     }
     
     // GETTERS

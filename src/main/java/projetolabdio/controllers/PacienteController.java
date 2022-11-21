@@ -5,10 +5,12 @@
 package projetolabdio.controllers;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import projetolabdio.controllers.DAO.PacienteDAO;
 import projetolabdio.controllers.DAO.PagamentoDAO;
 import projetolabdio.controllers.DAO.TratamentoDAO;
 import projetolabdio.models.Pagamento;
+import projetolabdio.models.Paciente;
 import projetolabdio.models.Tratamento;
 
 /**
@@ -75,5 +77,24 @@ public class PacienteController {
         req = pacienteDAO.updatePacienteEndereco(cpf, endereco);
 
         return req;
+    }
+    
+    public boolean createPaciente(String cpf, String nome, String endereco, String telefone, String idade){
+        boolean sucess = false;
+        
+        if(!"Insira o nome".equals(nome) && !" ".equals(nome)
+                && !"Insira o telefone".equals(telefone) && !" ".equals(telefone)
+                && !"Insira o endereco".equals(endereco) && !" ".equals(endereco)
+                && !"Insira CPF (xxx.xxx.xxx-xx)".equals(cpf) && !" ".equals(cpf)
+                && !"Insira idade".equals(idade) && !" ".equals(idade)){
+            
+                PacienteDAO pac = new PacienteDAO();
+                Paciente paciente = new Paciente(cpf, nome, endereco, telefone, Integer.parseInt(idade), Logged.getCrm());
+                sucess = pac.insertPaciente(paciente);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Insira todos os campos", "Erro", JOptionPane.ERROR_MESSAGE);
+        
+        return sucess;
     }
 }

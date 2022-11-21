@@ -18,18 +18,12 @@ public class Tratamento {
 
     /**
      * Constructor method from Tratamento
+     * @param idTratamento Primary ket of Tratamento
      * @param preco Attribute phone of Tratamento
      * @param descricao Attribute phone of Tratamento
      * @param data Attribute phone of Tratamento
-     * @param paciente_cpf Foreing key for Paciente
+     * @param Paciente_cpf Foreing key for Paciente
      */
-    public Tratamento(float preco, String descricao, String data, String paciente_cpf) { // CONSTRUCTOR
-        this.preco = preco;
-        this.descricao = descricao;
-        this.data = data;
-        this.Paciente_cpf = paciente_cpf;
-    }
-
     public Tratamento(int idTratamento, float preco, String descricao, String data, String Paciente_cpf) {
         this.idTratamento = idTratamento;
         this.preco = preco;

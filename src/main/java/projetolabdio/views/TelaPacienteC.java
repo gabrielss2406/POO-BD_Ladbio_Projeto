@@ -5,14 +5,15 @@
 package projetolabdio.views;
 
 import java.awt.Color;
+import projetolabdio.controllers.PacienteController;
 
 import projetolabdio.views.user_auth.TelaRegistroMedico;
 
 /**
  * Screen for create new Paciente
  * @author Gabriel Siqueira
- * @since 14/11/2022
- * @version 1.0
+ * @since 19/11/2022
+ * @version 2.0
  */
 public class TelaPacienteC extends javax.swing.JFrame {
 
@@ -55,7 +56,7 @@ public class TelaPacienteC extends javax.swing.JFrame {
 
         UserTel_txtField.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UserTel_txtField.setForeground(java.awt.Color.gray);
-        UserTel_txtField.setText("Insira seu telefone");
+        UserTel_txtField.setText("Insira o telefone");
         UserTel_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 UserTel_txtFieldFocusGained(evt);
@@ -67,7 +68,7 @@ public class TelaPacienteC extends javax.swing.JFrame {
 
         UserEnderc_txtField.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UserEnderc_txtField.setForeground(java.awt.Color.gray);
-        UserEnderc_txtField.setText("Insira seu endereco");
+        UserEnderc_txtField.setText("Insira o endereco");
         UserEnderc_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 UserEnderc_txtFieldFocusGained(evt);
@@ -91,7 +92,7 @@ public class TelaPacienteC extends javax.swing.JFrame {
 
         UserName_txtField.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UserName_txtField.setForeground(java.awt.Color.gray);
-        UserName_txtField.setText("Insira seu nome");
+        UserName_txtField.setText("Insira o nome");
         UserName_txtField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 UserName_txtFieldFocusGained(evt);
@@ -130,11 +131,11 @@ public class TelaPacienteC extends javax.swing.JFrame {
         });
 
         Nasc_lbl.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
-        Nasc_lbl.setText("Data de nascimento");
+        Nasc_lbl.setText("Idade");
 
         UserNasc_txtField1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         UserNasc_txtField1.setForeground(java.awt.Color.gray);
-        UserNasc_txtField1.setText("Insira sua data de nascimento (dd/mm/yyyy)");
+        UserNasc_txtField1.setText("Insira idade");
         UserNasc_txtField1.setToolTipText("");
         UserNasc_txtField1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -142,6 +143,11 @@ public class TelaPacienteC extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 UserNasc_txtField1FocusLost(evt);
+            }
+        });
+        UserNasc_txtField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                UserNasc_txtField1KeyTyped(evt);
             }
         });
 
@@ -158,24 +164,24 @@ public class TelaPacienteC extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Cpf_lbl)
+                            .addComponent(UserCpf_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UserNasc_txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Nasc_lbl))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Cad_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Cpf_lbl)
                                     .addComponent(Tel_lbl)
                                     .addComponent(Name_lbl)
                                     .addComponent(Enderc_lbl)
                                     .addComponent(UserName_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(UserCpf_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(UserEnderc_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(UserTel_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 2, Short.MAX_VALUE)))
-                        .addContainerGap(261, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(UserNasc_txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Nasc_lbl))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap(261, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,15 +200,15 @@ public class TelaPacienteC extends javax.swing.JFrame {
                 .addComponent(Enderc_lbl)
                 .addGap(1, 1, 1)
                 .addComponent(UserEnderc_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Cpf_lbl)
                 .addGap(1, 1, 1)
                 .addComponent(UserCpf_txtField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Nasc_lbl)
-                .addGap(0, 6, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(UserNasc_txtField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
+                .addGap(76, 76, 76)
                 .addComponent(Cad_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -227,7 +233,7 @@ public class TelaPacienteC extends javax.swing.JFrame {
      */
     private void UserTel_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserTel_txtFieldFocusGained
         String user = UserTel_txtField.getText();
-        if("".equals(user) || "Insira seu telefone".equals(user)){
+        if("".equals(user) || "Insira o telefone".equals(user)){
             UserTel_txtField.setForeground(Color.BLACK);
             UserTel_txtField.setText("");
         }
@@ -239,9 +245,9 @@ public class TelaPacienteC extends javax.swing.JFrame {
      */
     private void UserTel_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserTel_txtFieldFocusLost
         String user = UserTel_txtField.getText();
-        if("".equals(user) || "Insira seu telefone".equals(user)){
+        if("".equals(user) || "Insira o telefone".equals(user)){
             UserTel_txtField.setForeground(Color.GRAY);
-            UserTel_txtField.setText("Insira seu telefone");
+            UserTel_txtField.setText("Insira o telefone");
         }
     }//GEN-LAST:event_UserTel_txtFieldFocusLost
 
@@ -251,7 +257,7 @@ public class TelaPacienteC extends javax.swing.JFrame {
      */
     private void UserEnderc_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserEnderc_txtFieldFocusGained
         String user = UserEnderc_txtField.getText();
-        if("".equals(user) || "Insira seu endereco".equals(user)){
+        if("".equals(user) || "Insira o endereco".equals(user)){
             UserEnderc_txtField.setForeground(Color.BLACK);
             UserEnderc_txtField.setText("");
         }
@@ -263,9 +269,9 @@ public class TelaPacienteC extends javax.swing.JFrame {
      */
     private void UserEnderc_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserEnderc_txtFieldFocusLost
         String user = UserEnderc_txtField.getText();
-        if("".equals(user) || "Insira seu endereco".equals(user)){
+        if("".equals(user) || "Insira o endereco".equals(user)){
             UserEnderc_txtField.setForeground(Color.GRAY);
-            UserEnderc_txtField.setText("Insira seu endereco");
+            UserEnderc_txtField.setText("Insira o endereco");
         }
     }//GEN-LAST:event_UserEnderc_txtFieldFocusLost
 
@@ -299,7 +305,7 @@ public class TelaPacienteC extends javax.swing.JFrame {
      */
     private void UserName_txtFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserName_txtFieldFocusGained
         String user = UserName_txtField.getText();
-        if("".equals(user) || "Insira seu nome".equals(user)){
+        if("".equals(user) || "Insira o nome".equals(user)){
             UserName_txtField.setForeground(Color.BLACK);
             UserName_txtField.setText("");
         }
@@ -311,9 +317,9 @@ public class TelaPacienteC extends javax.swing.JFrame {
      */
     private void UserName_txtFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserName_txtFieldFocusLost
         String user = UserName_txtField.getText();
-        if("".equals(user) || "Insira seu nome".equals(user)){
+        if("".equals(user) || "Insira o nome".equals(user)){
             UserName_txtField.setForeground(Color.GRAY);
-            UserName_txtField.setText("Insira seu nome");
+            UserName_txtField.setText("Insira o nome");
         }
     }//GEN-LAST:event_UserName_txtFieldFocusLost
 
@@ -321,9 +327,15 @@ public class TelaPacienteC extends javax.swing.JFrame {
      * Use RegistroController for create new Paciente
      */
     private void Cad_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cad_btnActionPerformed
-        TelaRegistroMedico tela2 = new TelaRegistroMedico();
-        this.dispose();
-        tela2.setVisible(true);
+        // Create new Paciente
+        PacienteController pac = new PacienteController();
+        boolean sucess = pac.createPaciente(UserCpf_txtField.getText(), UserName_txtField.getText(), UserEnderc_txtField.getText(), UserTel_txtField.getText(), UserNasc_txtField1.getText());
+                
+        if(sucess){ // Navegate if register sucess
+            TelaMedico medico = new TelaMedico();
+            this.dispose();
+            medico.setVisible(true);
+        }
     }//GEN-LAST:event_Cad_btnActionPerformed
 
     /**
@@ -340,10 +352,10 @@ public class TelaPacienteC extends javax.swing.JFrame {
      * Remove the placeholder when gain focus
      */
     private void UserNasc_txtField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserNasc_txtField1FocusGained
-        String user = UserName_txtField.getText();
-        if("".equals(user) || "Insira sua data de nascimento (dd/mm/yyyy)".equals(user)){
-            UserName_txtField.setForeground(Color.BLACK);
-            UserName_txtField.setText("");
+        String user = UserNasc_txtField1.getText();
+        if("".equals(user) || "Insira idade".equals(user)){
+            UserNasc_txtField1.setForeground(Color.BLACK);
+            UserNasc_txtField1.setText("");
         }
     }//GEN-LAST:event_UserNasc_txtField1FocusGained
 
@@ -353,11 +365,22 @@ public class TelaPacienteC extends javax.swing.JFrame {
      */
     private void UserNasc_txtField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_UserNasc_txtField1FocusLost
         String user = UserNasc_txtField1.getText();
-        if("".equals(user) || "Insira sua data de nascimento (dd/mm/yyyy)".equals(user)){
+        if("".equals(user) || "Insira idade".equals(user)){
             UserNasc_txtField1.setForeground(Color.GRAY);
-            UserNasc_txtField1.setText("Insira sua data de nascimento (dd/mm/yyyy)");
+            UserNasc_txtField1.setText("Insira idade");
         }
     }//GEN-LAST:event_UserNasc_txtField1FocusLost
+
+    /**
+     * Make UserNasc_txtField1 accept only digits
+     */
+    private void UserNasc_txtField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_UserNasc_txtField1KeyTyped
+        // Accept only numbers
+        String caracteres="0987654321";
+            if(!caracteres.contains(evt.getKeyChar()+"")){
+            evt.consume();
+        }
+    }//GEN-LAST:event_UserNasc_txtField1KeyTyped
 
     /**
      * @param args the command line arguments

@@ -58,17 +58,24 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="Cpf_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="UserCpf_txtField" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                              <Component id="UserNasc_txtField1" min="-2" pref="400" max="-2" attributes="0"/>
+                              <Component id="Nasc_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="Cad_btn" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="Cpf_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="Tel_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="Name_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="Enderc_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="UserName_txtField" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
-                                      <Component id="UserCpf_txtField" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                                       <Component id="UserEnderc_txtField" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                                       <Component id="UserTel_txtField" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                                   </Group>
@@ -76,13 +83,6 @@
                               </Group>
                           </Group>
                           <EmptySpace pref="261" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="UserNasc_txtField1" min="-2" pref="400" max="-2" attributes="0"/>
-                              <Component id="Nasc_lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -105,15 +105,15 @@
                   <Component id="Enderc_lbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="UserEnderc_txtField" min="-2" pref="45" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="Cpf_lbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="UserCpf_txtField" min="-2" pref="45" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="Nasc_lbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   <Component id="UserNasc_txtField1" min="-2" pref="45" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                   <Component id="Cad_btn" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
@@ -129,7 +129,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Insira seu telefone"/>
+            <Property name="text" type="java.lang.String" value="Insira o telefone"/>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="UserTel_txtFieldFocusGained"/>
@@ -144,7 +144,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Insira seu endereco"/>
+            <Property name="text" type="java.lang.String" value="Insira o endereco"/>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="UserEnderc_txtFieldFocusGained"/>
@@ -174,7 +174,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Insira seu nome"/>
+            <Property name="text" type="java.lang.String" value="Insira o nome"/>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="UserName_txtFieldFocusGained"/>
@@ -240,7 +240,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Bahnschrift" size="18" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Data de nascimento"/>
+            <Property name="text" type="java.lang.String" value="Idade"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="UserNasc_txtField1">
@@ -251,12 +251,13 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="80" id="gray" palette="1" red="80" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Insira sua data de nascimento (dd/mm/yyyy)"/>
+            <Property name="text" type="java.lang.String" value="Insira idade"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="UserNasc_txtField1FocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="UserNasc_txtField1FocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="UserNasc_txtField1KeyTyped"/>
           </Events>
         </Component>
       </SubComponents>

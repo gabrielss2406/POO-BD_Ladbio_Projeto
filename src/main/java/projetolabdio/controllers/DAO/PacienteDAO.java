@@ -30,7 +30,7 @@ public class PacienteDAO extends ConnectionDAO{
             pst.setString(3, paciente.getEndereco());
             pst.setString(4, paciente.getTelefone());
             pst.setString(5, String.valueOf(paciente.getIdade()));
-            //pst.setString(6, paciente.chave de medico);
+            pst.setInt(6, paciente.getMedico_crm());
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -63,7 +63,7 @@ public class PacienteDAO extends ConnectionDAO{
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                Paciente pacienteAux = new Paciente(rs.getInt("idade"),rs.getString("cpf"),rs.getString("nome"), rs.getString("telefone"), rs.getString("endereco"), rs.getInt("Medico_crm"));
+                Paciente pacienteAux = new Paciente(rs.getString("cpf"),rs.getString("nome"), rs.getString("endereco"), rs.getString("telefone"), rs.getInt("idade"), rs.getInt("Medico_crm"));
                 pacientes.add(pacienteAux);
             }
             sucesso = true;
@@ -96,7 +96,7 @@ public class PacienteDAO extends ConnectionDAO{
             rs = pst.executeQuery();
 
             if(rs != null && rs.next()){
-                paciente = new Paciente(rs.getInt("idade"),rs.getString("cpf"),rs.getString("nome"), rs.getString("telefone"), rs.getString("endereco"), rs.getInt("Medico_crm"));
+                paciente = new Paciente(rs.getString("cpf"),rs.getString("nome"), rs.getString("endereco"), rs.getString("telefone"), rs.getInt("idade"), rs.getInt("Medico_crm"));
             }
             sucesso = true;
         } catch (SQLException e) {
